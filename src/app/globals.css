@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-heading font-normal text-navy;
+  }
+}
+
+@layer components {
+  /* Primary pill button — matches the Elementor kit button styling */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-[30px] py-[10.5px] font-sans text-nav font-semibold uppercase transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-navy text-white hover:bg-slate;
+  }
+  .btn-outline {
+    @apply btn border border-navy bg-transparent text-navy hover:bg-navy hover:text-white;
+  }
+  .btn-light {
+    @apply btn border border-navy bg-white text-navy hover:bg-sand;
+  }
+  .wrap {
+    @apply mx-auto w-full max-w-wrap px-5;
+  }
+}
