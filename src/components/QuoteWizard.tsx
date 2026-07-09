@@ -69,13 +69,13 @@ export default function QuoteWizard() {
 
   useEffect(() => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    if (siteKey) {
-      if (!document.querySelector('script[src*="recaptcha/api.js"]')) {
-        const script = document.createElement("script");
-        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-        script.async = true;
-        document.body.appendChild(script);
-      }
+    const w = window as unknown as { __recaptcha_loading?: boolean };
+    if (siteKey && !w.__recaptcha_loading && !document.querySelector('script[src*="recaptcha/api.js"]')) {
+      w.__recaptcha_loading = true;
+      const script = document.createElement("script");
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+      script.async = true;
+      document.body.appendChild(script);
     }
   }, []);
 

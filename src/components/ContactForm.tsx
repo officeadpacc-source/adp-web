@@ -26,7 +26,9 @@ export default function ContactForm({ lang = "sk" }: { lang?: Lang }) {
 
   useEffect(() => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    if (siteKey && !document.querySelector('script[src*="recaptcha/api.js"]')) {
+    const w = window as unknown as { __recaptcha_loading?: boolean };
+    if (siteKey && !w.__recaptcha_loading && !document.querySelector('script[src*="recaptcha/api.js"]')) {
+      w.__recaptcha_loading = true;
       const script = document.createElement("script");
       script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
       script.async = true;
