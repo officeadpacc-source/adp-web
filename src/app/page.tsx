@@ -3,7 +3,7 @@ import Link from "next/link";
 import ClientsBand from "@/components/ClientsBand";
 import Carousel from "@/components/Carousel";
 import CountUp from "@/components/CountUp";
-import SpolupracaSteps from "@/components/SpolupracaSteps";
+import SpolupracaSection from "@/components/SpolupracaSection";
 import { STAT_ICONS } from "@/components/StatIcons";
 import {
   hero,
@@ -13,7 +13,6 @@ import {
   referencie,
   about,
   team,
-  spolupraca,
   hodnoty,
 } from "@/content/home";
 
@@ -275,28 +274,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9 · Ako prebieha spolupráca — white; steps accordion left, photo right */}
-      <section className="section bg-white">
-        <div className="wrap">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h2 className="text-h4 md:text-h2">{spolupraca.h2}</h2>
-              <span className="rule" />
-            </div>
-            <p className="self-end text-base text-body">{spolupraca.intro}</p>
-          </div>
-          <div className="mt-14 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
-            <SpolupracaSteps />
-            <Image
-              src="/images/spolupraca.webp"
-              alt="Ako to u nás funguje"
-              width={1200}
-              height={900}
-              className="w-full rounded object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      {/* 9 · Ako prebieha spolupráca — shared section */}
+      <SpolupracaSection />
 
       {/* 10 · Naše hodnoty — sand */}
       <section className="section bg-sand">
