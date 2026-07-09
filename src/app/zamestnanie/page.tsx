@@ -97,14 +97,6 @@ export default function Zamestnanie() {
                 </span>
               </span>
             </a>
-            <p className="mt-5 text-[12px] text-white/50">
-              Zaslaním životopisu udeľujete súhlas so spracovaním osobných údajov na účely
-              výberového konania v zmysle{" "}
-              <a href="/ochrana-osobnych-udajov/" className="underline">
-                zásad ochrany osobných údajov
-              </a>
-              .
-            </p>
           </div>
         </div>
       </section>
