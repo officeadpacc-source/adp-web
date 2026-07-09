@@ -55,13 +55,13 @@ export default function Carousel({
         ref={track}
         className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-0 md:px-0"
       >
-        <div className="w-4 shrink-0 md:hidden" />
+        <div className="w-2 shrink-0 snap-start md:hidden" />
         {children.map((c, i) => (
           <div key={i} className={`shrink-0 snap-start ${slideClass}`}>
             {c}
           </div>
         ))}
-        <div className="w-4 shrink-0 md:hidden" />
+        <div className="w-2 shrink-0 snap-end md:hidden" />
       </div>
       <div className="mt-8 flex items-center justify-between">
         <div className="flex gap-2">
