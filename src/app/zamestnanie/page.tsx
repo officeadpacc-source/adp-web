@@ -83,16 +83,17 @@ export default function Zamestnanie() {
           <div className="mt-14 rounded bg-navy p-10 text-white md:p-12">
             <h2 className="font-heading text-h4 text-white">Zaujala vás práca u nás?</h2>
             <p className="mt-3 max-w-xl text-base text-white/80">
-              Pošlite nám životopis a pár viet o sebe. Ozveme sa vám aj v prípade, že práve
-              nemáme vypísanú konkrétnu pozíciu — dobrých ľudí si radi zapamätáme.
+              Aktuálne ponuky voľných pracovných miest a inzeráty našej spoločnosti nájdete na portáli Profesia.sk.
             </p>
             <a
-              href="mailto:office@adpacc.sk?subject=Zamestnanie%20-%20zivotopis"
+              href="https://www.profesia.sk/praca/a-d-p-accounting/C28995"
+              target="_blank"
+              rel="noopener"
               className="btn-sand mt-8 w-full sm:w-auto text-center"
             >
               <span className="btn-roll">
-                <span className="btn-roll-text" data-hover="Poslať životopis na office@adpacc.sk">
-                  Poslať životopis na office@adpacc.sk
+                <span className="btn-roll-text" data-hover="Pozrieť ponuky na Profesia.sk">
+                  Pozrieť ponuky na Profesia.sk
                 </span>
               </span>
             </a>
