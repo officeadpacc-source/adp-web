@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import ContactForm from "@/components/ContactForm";
-import { kontakt } from "@/content/home";
+import { homeFor, type Lang } from "@/lib/i18n";
 
 /**
  * Right-hand contact drawer — replica of the origin's Kontakt popup:
@@ -13,10 +13,13 @@ import { kontakt } from "@/content/home";
 export default function ContactDrawer({
   open,
   onClose,
+  lang = "sk",
 }: {
   open: boolean;
   onClose: () => void;
+  lang?: Lang;
 }) {
+  const { kontakt } = homeFor(lang);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -106,7 +109,7 @@ export default function ContactDrawer({
           </div>
 
           <div className="mt-8 rounded bg-white p-6">
-            <ContactForm />
+            <ContactForm lang={lang} />
           </div>
         </div>
       </aside>

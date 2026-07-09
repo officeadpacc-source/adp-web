@@ -1,19 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 /** Floating "Cenová ponuka" CTA, bottom-right on every page
- * (hidden on the quote page itself and on the thank-you page). */
+ * (hidden on the quote page itself, thank-you pages, and English pages). */
 export default function QuoteFab() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const path = window.location.pathname;
-    if (!path.startsWith("/cenova-ponuka") && !path.startsWith("/dakujeme")) {
-      setShow(true);
-    }
-  }, []);
+  const pathname = usePathname();
+  const show =
+    !pathname.includes("cenova-ponuka") &&
+    !pathname.includes("dakujeme") &&
+    !pathname.startsWith("/en");
 
   if (!show) return null;
 

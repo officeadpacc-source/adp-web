@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { spolupraca } from "@/content/home";
+import { homeFor, type Lang } from "@/lib/i18n";
 
 /**
- * The origin's collaboration steps: a vertical accordion — the active step
- * has a sand background with a thick gold left border; the others collapse
- * to just their title on a paper background.
+ * Collaboration steps accordion — the active step has a sand background with a
+ * gold left border; the others collapse to just their title on paper.
  */
-export default function SpolupracaSteps() {
+export default function SpolupracaSteps({ lang = "sk" }: { lang?: Lang }) {
   const [active, setActive] = useState(0);
+  const { spolupraca } = homeFor(lang);
 
   return (
     <div className="space-y-4">

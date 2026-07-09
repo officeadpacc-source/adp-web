@@ -4,10 +4,20 @@ import type { ReactNode } from "react";
 import CountUp from "@/components/CountUp";
 import SpolupracaSection from "@/components/SpolupracaSection";
 import type { ServiceContent } from "@/content/services";
+import { uiFor, localizeHref, type Lang } from "@/lib/i18n";
 
 /** Shared template for the four service subpages (mirrors the origin layout).
  * The Kontakt section + client band come from the global Footer. */
-export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: ReactNode }) {
+export default function ServicePage({
+  s,
+  extra,
+  lang = "sk",
+}: {
+  s: ServiceContent;
+  extra?: ReactNode;
+  lang?: Lang;
+}) {
+  const t = uiFor(lang);
   return (
     <main>
       {/* Hero — sand, like the homepage */}
@@ -24,17 +34,17 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
               </p>
             ))}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="/#kontakt" className="btn-primary w-full sm:w-auto">
+              <Link href={localizeHref("/#kontakt", lang)} className="btn-primary w-full sm:w-auto">
                 <span className="btn-roll">
-                  <span className="btn-roll-text" data-hover="Kontaktujte nás">
-                    Kontaktujte nás
+                  <span className="btn-roll-text" data-hover={t.servicePage.contactUs}>
+                    {t.servicePage.contactUs}
                   </span>
                 </span>
               </Link>
               <a href="#sluzby" className="btn-outline w-full sm:w-auto">
                 <span className="btn-roll">
-                  <span className="btn-roll-text" data-hover="Zistiť viac">
-                    Zistiť viac
+                  <span className="btn-roll-text" data-hover={t.learnMore}>
+                    {t.learnMore}
                   </span>
                 </span>
               </a>
@@ -71,40 +81,40 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
       {s.pricing.kind !== "none" && (
         <section className="section bg-sand">
           <div className="wrap">
-            <h2 className="text-h4 md:text-h2">Orientačná cena</h2>
+            <h2 className="text-h4 md:text-h2">{t.servicePage.estPrice}</h2>
             <span className="rule" />
             <p className="mt-8 max-w-3xl text-base text-body">{s.pricing.note}</p>
             <p className="mt-3 max-w-3xl text-base text-body">{s.pricing.alsoIntro}</p>
 
             {s.pricing.kind === "tiers" ? (
               <div className="mt-14 grid gap-6 lg:grid-cols-3">
-                {s.pricing.tiers.map((t) => (
-                  <div key={t.name} className="flex flex-col rounded bg-white p-8">
-                    <h3 className="font-heading text-h4 text-navy">{t.name}</h3>
-                    <p className="mt-1 text-small text-sand-dark">{t.subtitle}</p>
-                    <p className="mt-6 text-small font-semibold text-navy">Vhodný pre firmy:</p>
+                {s.pricing.tiers.map((tier) => (
+                  <div key={tier.name} className="flex flex-col rounded bg-white p-8">
+                    <h3 className="font-heading text-h4 text-navy">{tier.name}</h3>
+                    <p className="mt-1 text-small text-sand-dark">{tier.subtitle}</p>
+                    <p className="mt-6 text-small font-semibold text-navy">{t.servicePage.suitableFor}</p>
                     <ul className="mt-2 space-y-1 text-small text-muted">
-                      {t.fit.map((f) => (
+                      {tier.fit.map((f) => (
                         <li key={f}>· {f}</li>
                       ))}
                     </ul>
                     <div className="mt-8 border-t border-line pt-6">
-                      <p className="text-small text-muted">Vedenie účtovníctva</p>
+                      <p className="text-small text-muted">{t.servicePage.bookkeeping}</p>
                       <p className="mt-1 font-heading text-h3 text-navy">
-                        od {t.base} € <span className="text-small text-muted">/mesačne</span>
+                        {t.servicePage.from} {tier.base} € <span className="text-small text-muted">{t.servicePage.monthly}</span>
                       </p>
                       <p className="mt-4 text-small text-muted">
-                        Vedenie účtovníctva a spracovanie miezd
+                        {t.servicePage.bookkeepingAndPayroll}
                       </p>
                       <p className="mt-1 font-heading text-h3 text-navy">
-                        od {t.withPayroll} €{" "}
-                        <span className="text-small text-muted">/mesačne</span>
+                        {t.servicePage.from} {tier.withPayroll} €{" "}
+                        <span className="text-small text-muted">{t.servicePage.monthly}</span>
                       </p>
                     </div>
-                    <Link href="/#kontakt" className="btn-primary mt-8 w-full sm:w-auto">
+                    <Link href={localizeHref("/#kontakt", lang)} className="btn-primary mt-8 w-full sm:w-auto">
                       <span className="btn-roll">
-                        <span className="btn-roll-text" data-hover="Mám záujem">
-                          Mám záujem
+                        <span className="btn-roll-text" data-hover={t.interested}>
+                          {t.interested}
                         </span>
                       </span>
                     </Link>
@@ -115,13 +125,13 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
               <div className="mt-14 max-w-xl rounded bg-white p-10 text-center">
                 <p className="text-base text-body">{s.pricing.lead}</p>
                 <p className="mt-4 font-heading text-[64px] leading-none text-navy">
-                  od <CountUp to={s.pricing.value} /> €
+                  {t.servicePage.from} <CountUp to={s.pricing.value} /> €
                 </p>
                 <p className="mt-2 text-small text-muted">{s.pricing.unit}</p>
-                 <Link href="/#kontakt" className="btn-primary mt-8 w-full sm:w-auto">
+                <Link href={localizeHref("/#kontakt", lang)} className="btn-primary mt-8 w-full sm:w-auto">
                   <span className="btn-roll">
-                    <span className="btn-roll-text" data-hover="Mám záujem">
-                      Mám záujem
+                    <span className="btn-roll-text" data-hover={t.interested}>
+                      {t.interested}
                     </span>
                   </span>
                 </Link>
@@ -132,7 +142,7 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
       )}
 
       {extra}
-      <SpolupracaSection />
+      <SpolupracaSection lang={lang} />
     </main>
   );
 }

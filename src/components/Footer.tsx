@@ -3,16 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import ContactForm from "@/components/ContactForm";
 import ClientsBand from "@/components/ClientsBand";
-import { kontakt } from "@/content/home";
-
-const FOOTER_NAV = [
-  { label: "Služby", href: "/#sluzby" },
-  { label: "O nás", href: "/o-adp/" },
-  { label: "Referencie", href: "/#referencie" },
-  { label: "Blog", href: "/blog/" },
-];
+import { homeFor, uiFor, localizeHref, type Lang } from "@/lib/i18n";
 
 const SOCIALS = [
   { label: "Facebook", icon: "social-facebook-f", href: "https://www.facebook.com/profile.php?id=61576238373596" },
@@ -23,11 +17,23 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const lang: Lang = pathname.startsWith("/en") ? "en" : "sk";
+  const { kontakt } = homeFor(lang);
+  const t = uiFor(lang);
+
+  const FOOTER_NAV = [
+    { label: t.nav.services, href: localizeHref("/#sluzby", lang) },
+    { label: t.nav.about, href: lang === "en" ? "/en/about-us/" : "/o-adp/" },
+    { label: t.nav.references, href: localizeHref("/#referencie", lang) },
+    { label: t.nav.blog, href: lang === "en" ? "/en/blog-en/" : "/blog/" },
+  ];
+
   const [isQuotePage, setIsQuotePage] = useState(false);
 
   useEffect(() => {
     const path = window.location.pathname;
-    setIsQuotePage(path.startsWith("/cenova-ponuka"));
+    setIsQuotePage(path.includes("cenova-ponuka"));
   }, []);
 
   return (
@@ -87,29 +93,31 @@ export default function Footer() {
                     </a>
                   </p>
                 </div>
-                <Link href={kontakt.quote.href} className="btn-sand w-full sm:w-auto">
-                  <span className="btn-roll">
-                    <span className="btn-roll-text" data-hover={kontakt.quote.label}>
-                      {kontakt.quote.label}
+                {lang !== "en" && (
+                  <Link href={kontakt.quote.href} className="btn-sand w-full sm:w-auto">
+                    <span className="btn-roll">
+                      <span className="btn-roll-text" data-hover={kontakt.quote.label}>
+                        {kontakt.quote.label}
+                      </span>
                     </span>
-                  </span>
-                </Link>
+                  </Link>
+                )}
               </div>
             </div>
             <div className="rounded bg-white p-6 md:p-10">
-              <ContactForm />
+              <ContactForm lang={lang} />
             </div>
           </div>
         </section>
       )}
 
-      <ClientsBand />
+      <ClientsBand lang={lang} />
 
       {/* Footer — slate #39404D */}
       <footer className="bg-slate text-white">
         <div className="wrap py-16 md:py-[72px]">
           <div className="flex flex-col items-start justify-between gap-10 border-b border-white/15 pb-10 md:flex-row md:items-center">
-            <Link href="/" aria-label="A.D.P. Accounting — domov">
+            <Link href={t.home} aria-label="A.D.P. Accounting — domov">
               <Image
                 src="/images/adpacc_logo_white.png"
                 alt="A.D.P. Accounting"
@@ -118,7 +126,7 @@ export default function Footer() {
                 className="h-[42px] w-auto"
               />
             </Link>
-            <nav className="flex flex-wrap gap-x-8 gap-y-3" aria-label="Pätička">
+            <nav className="flex flex-wrap gap-x-8 gap-y-3" aria-label={t.menu}>
               {FOOTER_NAV.map((n) => (
                 <Link
                   key={n.href}
@@ -156,39 +164,38 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-2">
               <Link
-                href="/ochrana-osobnych-udajov/"
+                href={t.footer.privacyHref}
                 className="text-small text-white/70 hover:text-white"
               >
-                Ochrana osobných údajov
+                {t.footer.privacy}
               </Link>
-              <Link href="/cookies/" className="text-small text-white/70 hover:text-white">
-                Zásady používania súborov cookies
+              <Link href={t.footer.cookiesHref} className="text-small text-white/70 hover:text-white">
+                {t.footer.cookies}
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col items-start justify-between gap-4 pt-8 md:flex-row md:items-center">
             <p className="text-[12px] leading-relaxed text-faint">
-              © {new Date().getFullYear()} A.D.P. Accounting, s.r.o. Táto stránka je chránená
-              reCAPTCHA a platia pre ňu{" "}
+              © {new Date().getFullYear()} A.D.P. Accounting, s.r.o. {t.footer.recaptchaPre}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noopener"
                 className="underline"
               >
-                Zásady ochrany osobných údajov
-              </a>{" "}
-              a{" "}
+                {t.footer.recaptchaPrivacy}
+              </a>
+              {t.footer.recaptchaMid}
               <a
                 href="https://policies.google.com/terms"
                 target="_blank"
                 rel="noopener"
                 className="underline"
               >
-                Zmluvné podmienky
-              </a>{" "}
-              spoločnosti Google.
+                {t.footer.recaptchaTerms}
+              </a>
+              {t.footer.recaptchaEnd}
             </p>
             <a
               href="https://webgate.digital"
@@ -196,7 +203,7 @@ export default function Footer() {
               rel="noopener"
               className="text-[12px] text-faint hover:text-white"
             >
-              Created by webgate.digital
+              {t.footer.createdBy}
             </a>
           </div>
         </div>

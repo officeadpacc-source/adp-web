@@ -4,11 +4,24 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import posts from "@/content/blog.json";
+import posts from "@/content/blog.en.json";
 
 export const dynamicParams = false;
 
 type Params = { post: string };
+
+const EN_SK_POSTS: Record<string, string> = {
+  "current-legislative-changes-in-accounting-and-taxes-for-2025":
+    "aktualne-legislativne-zmeny-v-uctovnictve-a-daniach-pre-rok-2025",
+  "e-invoicing-and-accounting-digitalization-how-to-prepare-for-mandatory-changes":
+    "elektronicka-fakturacia-a-digitalizacia-uctovnictva-ako-sa-pripravit-na-povinne-zmeny",
+  "instant-payments-and-iban-verification-will-be-mandatory-from-october-9":
+    "okamzite-platby-kontrola-prijemcu-od-oktobra-povinnost",
+  "practical-advice-for-entrepreneurs-tax-optimization-and-effective-accounting":
+    "prakticke-rady-pre-podnikatelov-danova-optimalizacia-a-efektivne-uctovnictvo",
+  "vat-deduction-on-passengers-cars-from-1-january-2026":
+    "odpocet-dph-na-motorove-vozidla-v-podnikani-20260101",
+};
 
 export function generateStaticParams(): Params[] {
   return posts.map((p) => ({ post: p.slug }));
@@ -17,19 +30,6 @@ export function generateStaticParams(): Params[] {
 function getPost(slug: string) {
   return posts.find((p) => p.slug === slug);
 }
-
-const SK_EN_POSTS: Record<string, string> = {
-  "aktualne-legislativne-zmeny-v-uctovnictve-a-daniach-pre-rok-2025":
-    "current-legislative-changes-in-accounting-and-taxes-for-2025",
-  "elektronicka-fakturacia-a-digitalizacia-uctovnictva-ako-sa-pripravit-na-povinne-zmeny":
-    "e-invoicing-and-accounting-digitalization-how-to-prepare-for-mandatory-changes",
-  "okamzite-platby-kontrola-prijemcu-od-oktobra-povinnost":
-    "instant-payments-and-iban-verification-will-be-mandatory-from-october-9",
-  "prakticke-rady-pre-podnikatelov-danova-optimalizacia-a-efektivne-uctovnictvo":
-    "practical-advice-for-entrepreneurs-tax-optimization-and-effective-accounting",
-  "odpocet-dph-na-motorove-vozidla-v-podnikani-20260101":
-    "vat-deduction-on-passengers-cars-from-1-january-2026",
-};
 
 export async function generateMetadata({
   params,
@@ -40,27 +40,27 @@ export async function generateMetadata({
   const p = getPost(post);
   if (!p) return {};
 
-  const enSlug = SK_EN_POSTS[post];
+  const skSlug = EN_SK_POSTS[post];
   const alternates: Record<string, string> = {
-    "sk-SK": `https://adpacc.sk/${p.slug}/`,
-    "x-default": `https://adpacc.sk/${p.slug}/`,
+    "en-GB": `https://adpacc.sk/en/${p.slug}/`,
   };
-  if (enSlug) {
-    alternates["en-GB"] = `https://adpacc.sk/en/${enSlug}/`;
+  if (skSlug) {
+    alternates["sk-SK"] = `https://adpacc.sk/${skSlug}/`;
+    alternates["x-default"] = `https://adpacc.sk/${skSlug}/`;
   }
 
   return {
     title: `${p.title} | ADP Accounting`,
     description: p.description,
     alternates: {
-      canonical: `https://adpacc.sk/${p.slug}/`,
+      canonical: `https://adpacc.sk/en/${p.slug}/`,
       languages: alternates,
     },
     openGraph: { title: p.title, description: p.description, images: p.image ? [p.image] : [] },
   };
 }
 
-export default async function Post({ params }: { params: Promise<Params> }) {
+export default async function PostEn({ params }: { params: Promise<Params> }) {
   const { post } = await params;
   const p = getPost(post);
   if (!p) notFound();
@@ -93,10 +93,10 @@ export default async function Post({ params }: { params: Promise<Params> }) {
           )}
           <div className="post-body" dangerouslySetInnerHTML={{ __html: html }} />
           <div className="mt-14 border-t border-line pt-8">
-            <Link href="/blog/" className="btn-outline w-full sm:w-auto">
+            <Link href="/en/blog-en/" className="btn-outline w-full sm:w-auto">
               <span className="btn-roll">
-                <span className="btn-roll-text" data-hover="← Späť na blog">
-                  ← Späť na blog
+                <span className="btn-roll-text" data-hover="← Back to blog">
+                  ← Back to blog
                 </span>
               </span>
             </Link>

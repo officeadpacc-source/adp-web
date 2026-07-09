@@ -3,23 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import ContactDrawer from "@/components/ContactDrawer";
-
-const SERVICES = [
-  { label: "Podvojné účtovníctvo", href: "/podvojne-uctovnictvo/" },
-  { label: "Jednoduché účtovníctvo", href: "/jednoduche-uctovnictvo/" },
-  { label: "Mzdy", href: "/mzdy/" },
-  { label: "Ostatné služby", href: "/ostatne-sluzby/" },
-];
-
-const NAV = [
-  { label: "O nás", href: "/o-adp/" },
-  { label: "Referencie", href: "/#referencie" },
-  { label: "Blog", href: "/blog/" },
-  { label: "Zamestnanie", href: "/zamestnanie/" },
-];
+import { uiFor, type Lang } from "@/lib/i18n";
 
 export default function Header() {
+  const pathname = usePathname();
+  const lang: Lang = pathname.startsWith("/en") ? "en" : "sk";
+  const t = uiFor(lang);
+  const SERVICES = t.serviceLinks;
+  const NAV = [
+    { label: t.nav.about, href: lang === "en" ? "/en/about-us/" : "/o-adp/" },
+    { label: t.nav.references, href: `${t.home}#referencie` },
+    { label: t.nav.blog, href: lang === "en" ? "/en/blog-en/" : "/blog/" },
+    ...(lang === "en" ? [] : [{ label: t.nav.careers, href: "/zamestnanie/" }]),
+  ];
+
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -27,7 +26,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-sand">
       <div className="wrap flex items-center justify-between gap-4 py-4">
-        <Link href="/" aria-label="A.D.P. Accounting — domov" className="shrink-0">
+        <Link href={t.home} aria-label="A.D.P. Accounting" className="shrink-0">
           <Image
             src="/images/adpacc_logo_web.webp"
             alt="A.D.P. Accounting"
@@ -39,30 +38,30 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Hlavné menu">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label={t.menu}>
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
             <Link
-              href="/#sluzby"
+              href={`${t.home}#sluzby`}
               className="text-nav font-semibold uppercase text-navy hover:text-muted"
             >
-              Služby ▾
+              {t.nav.services} ▾
             </Link>
             {servicesOpen && (
               <div className="absolute left-0 top-full z-50 pt-3">
                 <div className="min-w-64 rounded-b-md bg-white py-2 shadow-[0px_10px_30px_0px_rgba(0,0,0,0.05)]">
-                {SERVICES.map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className="block px-5 py-2.5 text-navsm font-semibold uppercase text-navy hover:bg-sand"
-                  >
-                    {s.label}
-                  </Link>
-                ))}
+                  {SERVICES.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="block px-5 py-2.5 text-navsm font-semibold uppercase text-navy hover:bg-sand"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
@@ -81,8 +80,8 @@ export default function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <button onClick={() => setContactOpen(true)} className="btn-primary">
             <span className="btn-roll">
-              <span className="btn-roll-text" data-hover="Kontakt">
-                Kontakt
+              <span className="btn-roll-text" data-hover={t.contact}>
+                {t.contact}
               </span>
             </span>
           </button>
@@ -93,28 +92,34 @@ export default function Header() {
             className="btn-light"
           >
             <span className="btn-roll">
-              <span className="btn-roll-text" data-hover="Klientská zóna">
-                Klientská zóna
+              <span className="btn-roll-text" data-hover={t.clientZone}>
+                {t.clientZone}
               </span>
             </span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/doklado.svg" alt="" className="h-5 w-5 shrink-0 rounded-[2px]" />
           </a>
           <Link
-            href="/en/"
+            href={t.langSwitchHref}
             className="flex items-center gap-2 text-nav font-semibold uppercase text-navy hover:text-muted"
-            aria-label="Switch to English"
+            aria-label={lang === "sk" ? "Switch to English" : "Prepnúť do slovenčiny"}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/flag-en.svg" alt="" width={21} height={15} className="rounded-[2px]" />
-            EN
+            <img
+              src={lang === "sk" ? "/images/flag-en.svg" : "/images/flag-sk.svg"}
+              alt=""
+              width={21}
+              height={15}
+              className="rounded-[2px]"
+            />
+            {t.langSwitchLabel}
           </Link>
         </div>
 
         {/* Mobile burger */}
         <button
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
-          aria-label={open ? "Zavrieť menu" : "Otvoriť menu"}
+          aria-label={open ? t.closeMenu : t.openMenu}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
@@ -127,35 +132,37 @@ export default function Header() {
       {/* Mobile backdrop */}
       <div
         className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
       />
 
       {/* Mobile slide-in sidebar */}
       <nav
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-navy p-6 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden flex flex-col justify-between ${
+        className={`fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[85vw] flex-col justify-between bg-navy p-6 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        aria-label="Mobilné menu"
+        aria-label={t.menu}
       >
         <div>
-          <div className="flex items-center justify-between pb-4 border-b border-white/10">
-            <span className="font-heading text-h5 text-white">Menu</span>
+          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <span className="font-heading text-h5 text-white">{t.menu}</span>
             <button
               className="flex h-8 w-8 items-center justify-center text-white"
               onClick={() => setOpen(false)}
-              aria-label="Zavrieť menu"
+              aria-label={t.closeMenu}
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <div className="py-6 space-y-6">
+          <div className="space-y-6 py-6">
             <div>
-              <p className="text-navsm font-bold uppercase tracking-wider text-sand-dark">Služby</p>
-              <div className="mt-2 space-y-1 pl-3 border-l border-white/10">
+              <p className="text-navsm font-bold uppercase tracking-wider text-sand-dark">
+                {t.nav.services}
+              </p>
+              <div className="mt-2 space-y-1 border-l border-white/10 pl-3">
                 {SERVICES.map((s) => (
                   <Link
                     key={s.href}
@@ -183,7 +190,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col gap-3">
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6">
           <button
             onClick={() => {
               setOpen(false);
@@ -191,39 +198,36 @@ export default function Header() {
             }}
             className="btn-sand w-full"
           >
-            <span className="btn-roll">
-              <span className="btn-roll-text" data-hover="Kontakt">
-                Kontakt
-              </span>
-            </span>
+            {t.contact}
           </button>
           <a
             href="https://app.doklado.sk/signin_email"
             target="_blank"
             rel="noopener"
-            className="btn-invert w-full flex items-center justify-center gap-2"
+            className="btn-invert flex w-full items-center justify-center gap-2"
           >
-            <span className="btn-roll">
-              <span className="btn-roll-text" data-hover="Klientská zóna">
-                Klientská zóna
-              </span>
-            </span>
+            {t.clientZone}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/doklado.svg" alt="" className="h-5 w-5 shrink-0 rounded-[2px]" />
           </a>
           <Link
-            href="/en/"
+            href={t.langSwitchHref}
             onClick={() => setOpen(false)}
             className="flex items-center gap-2 py-2 text-nav font-semibold uppercase text-white hover:text-sand-dark"
-            aria-label="Switch to English"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/flag-en.svg" alt="" width={21} height={15} className="rounded-[2px]" />
-            EN
+            <img
+              src={lang === "sk" ? "/images/flag-en.svg" : "/images/flag-sk.svg"}
+              alt=""
+              width={21}
+              height={15}
+              className="rounded-[2px]"
+            />
+            {t.langSwitchLabel}
           </Link>
         </div>
       </nav>
-      <ContactDrawer open={contactOpen} onClose={() => setContactOpen(false)} />
+      <ContactDrawer open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} />
     </header>
   );
 }

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Carousel from "@/components/Carousel";
-import { team } from "@/content/home";
+import { homeFor, type Lang } from "@/lib/i18n";
 
-/** Náš tím — 4-per-view carousel + join CTA (homepage and O nás page). */
-export default function TeamSection() {
+/** Team — 4-per-view carousel + join CTA (homepage and About page). */
+export default function TeamSection({ lang = "sk" }: { lang?: Lang }) {
+  const { team } = homeFor(lang);
   return (
     <section className="bg-white pt-16 md:pt-[120px]">
       <div className="wrap">

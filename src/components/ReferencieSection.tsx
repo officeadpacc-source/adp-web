@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Carousel from "@/components/Carousel";
-import { referencie } from "@/content/home";
+import { homeFor, type Lang } from "@/lib/i18n";
 
 const REF_LOGOS = Array.from({ length: 12 }, (_, i) => `/images/reflogo-${i + 1}.png`);
 
-/** Referencie — logo grid + quote carousel (homepage and O nás page). */
-export default function ReferencieSection() {
+/** References — logo grid + quote carousel (homepage and About page). */
+export default function ReferencieSection({ lang = "sk" }: { lang?: Lang }) {
+  const { referencie } = homeFor(lang);
   return (
     <section id="referencie" className="section scroll-mt-24 bg-paper">
       <div className="wrap">
@@ -20,7 +21,7 @@ export default function ReferencieSection() {
               <Image
                 key={src}
                 src={src}
-                alt="Logo klienta"
+                alt="Client logo"
                 width={130}
                 height={80}
                 className="mx-auto h-14 w-auto opacity-60 grayscale md:h-20"

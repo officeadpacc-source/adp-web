@@ -14,7 +14,7 @@ declare global {
  * direct visits and refreshes never push the event. Then sends the visitor
  * home after 8s (well after GTM fires).
  */
-export default function ThanksClient() {
+export default function ThanksClient({ redirectUrl = "/" }: { redirectUrl?: string }) {
   useEffect(() => {
     try {
       if (sessionStorage.getItem("adp_lead") === "1") {
@@ -25,8 +25,8 @@ export default function ThanksClient() {
     } catch {
       /* private mode */
     }
-    const t = setTimeout(() => window.location.replace("/"), 8000);
+    const t = setTimeout(() => window.location.replace(redirectUrl), 8000);
     return () => clearTimeout(t);
-  }, []);
+  }, [redirectUrl]);
   return null;
 }
