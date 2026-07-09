@@ -123,7 +123,7 @@ export default function AboutSections({ lang = "sk" }: { lang?: Lang }) {
         </div>
       </section>
 
-      <TeamSection lang={lang} />
+      <TeamSection lang={lang} layout="grid" />
       <div className="pb-4 md:pb-8" />
       <ReferencieSection lang={lang} />
     </main>
