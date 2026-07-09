@@ -27,7 +27,7 @@ export default function TeamSection({
                     alt={m.name}
                     width={600}
                     height={700}
-                    className="aspect-[6/7] w-full object-cover rounded"
+                    className="aspect-[293/400] w-full object-cover rounded"
                   />
                   <p className="mt-5 text-small text-sand-dark font-semibold">{m.role}</p>
                   <h3 className="mt-1 font-heading text-h5 text-navy">{m.name}</h3>
@@ -44,7 +44,7 @@ export default function TeamSection({
                     alt={m.name}
                     width={600}
                     height={700}
-                    className="aspect-[6/7] w-full object-cover"
+                    className="aspect-[293/400] w-full object-cover"
                   />
                   <p className="mt-5 text-small text-sand-dark">{m.role}</p>
                   <h3 className="mt-1 font-heading text-h5 text-navy">{m.name}</h3>
