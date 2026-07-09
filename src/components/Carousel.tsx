@@ -53,7 +53,7 @@ export default function Carousel({
     <div>
       <div
         ref={track}
-        className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-0 md:px-0"
+        className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-0 md:px-0"
       >
         {children.map((c, i) => (
           <div key={i} className={`shrink-0 snap-start ${slideClass}`}>
