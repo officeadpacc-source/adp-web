@@ -195,18 +195,6 @@ export const hodnoty = {
       title: "Rozvoj",
       text: "Máme ambíciu neustále sa zlepšovať a patriť medzi najlepších. Sledujeme technologické trendy, prinášame nové riešenia a vytvárame trvalú hodnotu pre zákazníkov. Svoju prácu robíme s nadšením, zodpovednosťou a chuťou posúvať veci vpred.",
     },
-    {
-      title: "Rýchlosť a flexibilita",
-      text: "doklady odovzdávate iba elektronicky",
-    },
-    {
-      title: "Informovanie o zmenách v zákonoch",
-      text: "",
-    },
-    {
-      title: "Podpora aj mimo účtovníctva",
-      text: "pomôžeme so založením firmy, daňovým poradenstvom či administratívou",
-    },
   ],
 };
 
