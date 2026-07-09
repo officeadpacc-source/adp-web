@@ -138,13 +138,13 @@ export default function QuoteWizard() {
   }
 
   return (
-    <div className="mx-auto max-w-[860px] rounded-xl bg-[#16202e] p-6 md:p-10">
+    <div className="mx-auto max-w-[860px] rounded-xl bg-[#16202e] p-6 px-3 md:p-10">
       {/* progress */}
       <div className="mb-8 flex items-center gap-2">
-        {["O spoločnosti", "Účtovné agendy", "Doplňujúce info"].map((t, i) => (
+        {["O spoločnosti", "Účtovné agendy", "Doplňujúce"].map((t, i) => (
           <div key={t} className="flex flex-1 flex-col gap-2">
             <span className={`h-1 rounded ${i <= step ? "bg-sand-dark" : "bg-white/10"}`} />
-            <span className={`text-[11px] uppercase tracking-wide ${i === step ? "text-sand-dark" : "text-[#8E9BAA]"}`}>
+            <span className={`text-[9px] min-[375px]:text-[10px] sm:text-[11px] uppercase tracking-wide whitespace-nowrap ${i === step ? "text-sand-dark" : "text-[#8E9BAA]"}`}>
               {t}
             </span>
           </div>
