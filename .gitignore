@@ -9,3 +9,6 @@
 .env
 .env.local
 .netlify
+
+# TS build artifact
+*.tsbuildinfo
