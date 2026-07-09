@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Frank_Ruhl_Libre, Manrope, Roboto } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import QuoteFab from "@/components/QuoteFab";
 
 const GTM_ID = "GTM-PCPWTWB8";
 
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         {children}
         <Footer />
+        <QuoteFab />
       </body>
     </html>
   );
