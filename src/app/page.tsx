@@ -183,7 +183,7 @@ export default function Home() {
                   alt="Logo klienta"
                   width={130}
                   height={80}
-                  className="mx-auto h-10 w-auto opacity-50 grayscale sm:h-12"
+                  className="mx-auto h-14 w-auto opacity-60 grayscale md:h-20"
                 />
               ))}
             </div>

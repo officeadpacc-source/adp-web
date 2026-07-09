@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ContactDrawer from "@/components/ContactDrawer";
 
 const SERVICES = [
   { label: "Podvojné účtovníctvo", href: "/podvojne-uctovnictvo/" },
@@ -20,6 +21,7 @@ const NAV = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-sand">
@@ -49,7 +51,8 @@ export default function Header() {
               Služby ▾
             </Link>
             {servicesOpen && (
-              <div className="absolute left-0 top-full z-50 mt-3 min-w-64 rounded-b-md bg-white py-2 shadow-[0px_10px_30px_0px_rgba(0,0,0,0.05)]">
+              <div className="absolute left-0 top-full z-50 pt-3">
+                <div className="min-w-64 rounded-b-md bg-white py-2 shadow-[0px_10px_30px_0px_rgba(0,0,0,0.05)]">
                 {SERVICES.map((s) => (
                   <Link
                     key={s.href}
@@ -59,6 +62,7 @@ export default function Header() {
                     {s.label}
                   </Link>
                 ))}
+                </div>
               </div>
             )}
           </div>
@@ -74,9 +78,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <Link href="/#kontakt" className="btn-primary">
+          <button onClick={() => setContactOpen(true)} className="btn-primary">
             Kontakt
-          </Link>
+          </button>
           <a
             href="https://app.doklado.sk/signin_email"
             target="_blank"
@@ -137,9 +141,15 @@ export default function Header() {
             </Link>
           ))}
           <div className="mt-4 flex flex-col gap-3">
-            <Link href="/#kontakt" onClick={() => setOpen(false)} className="btn-primary">
+            <button
+              onClick={() => {
+                setOpen(false);
+                setContactOpen(true);
+              }}
+              className="btn-primary"
+            >
               Kontakt
-            </Link>
+            </button>
             <a
               href="https://app.doklado.sk/signin_email"
               target="_blank"
@@ -154,6 +164,7 @@ export default function Header() {
           </div>
         </nav>
       )}
+      <ContactDrawer open={contactOpen} onClose={() => setContactOpen(false)} />
     </header>
   );
 }

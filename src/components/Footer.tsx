@@ -12,11 +12,11 @@ const FOOTER_NAV = [
 ];
 
 const SOCIALS = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61576238373596" },
-  { label: "Instagram", href: "https://www.instagram.com/adp_accounting" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/adpaccounting/" },
-  { label: "Threads", href: "https://www.threads.com/@sk_adpacc" },
-  { label: "WhatsApp", href: "https://wa.me/421903772272" },
+  { label: "Facebook", icon: "social-facebook-f", href: "https://www.facebook.com/profile.php?id=61576238373596" },
+  { label: "Instagram", icon: "social-instagram", href: "https://www.instagram.com/adp_accounting" },
+  { label: "LinkedIn", icon: "social-linkedin-in", href: "https://www.linkedin.com/company/adpaccounting/" },
+  { label: "Threads", icon: "social-threads", href: "https://www.threads.com/@sk_adpacc" },
+  { label: "WhatsApp", icon: "social-whatsapp", href: "https://wa.me/421903772272" },
 ];
 
 export default function Footer() {
@@ -121,9 +121,14 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-[13px] text-white/85 transition hover:border-white hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-sand-dark"
                 >
-                  {s.label[0]}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/images/${s.icon}.svg`}
+                    alt=""
+                    className="h-4 w-4 brightness-0 invert"
+                  />
                 </a>
               ))}
             </div>
