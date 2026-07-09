@@ -110,16 +110,16 @@ export const team = {
       bio: "Peter Raus sa účtovníctvu venuje viac ako 25 rokov. Počas svojej kariéry sa stal spoľahlivou oporou pre klientov aj celý tím. Väčšinu pracovného času trávi na stretnutiach s klientmi, kde sa venuje individuálnym riešeniam a odbornému poradenstvu. Vďaka silnému analytickému mysleniu, skúsenostiam a manažérskym schopnostiam dokáže efektívne riešiť aj náročnejšie situácie. Spokojnosť klientov a stabilné fungovanie tímu sú pre neho vždy prioritou.",
     },
     {
-      name: "Anna Privrelová",
-      role: "Účtovníčka",
-      photo: "/images/team-2.webp",
-      bio: "Anna Privrelová je zodpovedná, pracovitá a cieľavedomá účtovníčka, ktorá sa najlepšie cíti vtedy, keď má jasne stanovené úlohy a priestor naplno sa venovať svojej práci. V tíme je vnímaná ako energická a spoľahlivá kolegyňa. Okrem práce sa venuje športu a rada prijíma nové výzvy. Jej vytrvalosť a disciplína sa premietajú aj do pracovného prístupu, vďaka čomu je dôležitou súčasťou nášho tímu.",
-    },
-    {
       name: "Ingrid Pokopcová",
       role: "Účtovníčka",
       photo: "/images/team-3.webp",
       bio: "Ingrid Pokopcová je dôležitou súčasťou každodenného fungovania kancelárie. Vďaka svojej organizovanosti, komunikačným schopnostiam a pozitívnemu prístupu zabezpečuje plynulý chod interných procesov aj komunikáciu s klientmi. Má výborný prehľad v dokumentácii, administratíve a zmluvnej agende. Dokáže efektívne vniesť systém aj do náročnejších úloh a prispieva k tomu, aby práca v kancelárii prebiehala spoľahlivo a profesionálne.",
+    },
+    {
+      name: "Anna Privrelová",
+      role: "Účtovníčka",
+      photo: "/images/team-2.webp",
+      bio: "Anna Privrelová je zodpovedná, pracovitá a cieľavedomá účtovníčka, ktorá sa najlepšie cíti vtedy, keď má jasne stanovené úlohy a priestor naplno sa venovať svojej práci. V tíme je vnímaná ako energická a spoľahlivá kolegyňa. Okrem práce sa venuje športu a rada prijíma nové výzvy. Jej vytrvalosť a disciplína sa premietajú aj do pracovného prístupu, vďaka čomu je dôležitou súčasťou nášho tímu.",
     },
     {
       name: "Martina Šebová",
