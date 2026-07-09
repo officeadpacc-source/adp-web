@@ -45,7 +45,8 @@ const config: Config = {
         navsm: ["14px", { lineHeight: "1.2", letterSpacing: "0.5px" }],
       },
       maxWidth: {
-        wrap: "1140px",
+        // Elementor kit container width (desktop); 1024px applies ≤1024 viewports
+        wrap: "1264px",
       },
     },
   },
