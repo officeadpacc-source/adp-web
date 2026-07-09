@@ -11,7 +11,7 @@ export const services: Record<string, ServiceContent> = {
       "We provide comprehensive processing of accounting documents, regular outputs for managerial decision-making, and compliance checks with tax regulations.",
       "With us, you can be confident that your finances are built on solid ground.",
     ],
-    heroImg: "/images/service-podvojne.avif",
+    heroImg: "/sluzby/podvojne.jpg",
     featuresH2: "Double-Entry Accounting Services",
     features: [
       { lead: "Preparation", rest: "of reports and statements according to specific client requirements" },
@@ -39,7 +39,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "We’ll provide you with a complete overview of your income and expenses. Entrust your accounting responsibilities to us, and you can focus on running your business.",
     ],
-    heroImg: "/images/service-jednoduche.webp",
+    heroImg: "/sluzby/jednoducheuct.jpg",
     featuresH2: "Single-Entry Accounting Services",
     features: [
       { lead: "Preparation", rest: "of reports and statements according to specific client requirements" },
@@ -65,7 +65,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "Entrust your complete payroll accounting to us. We’ll monitor legislative changes on your behalf, process payroll, issue payslips, and support your employees with any questions about their payslips — all while upholding the highest standards of data protection.",
     ],
-    heroImg: "/images/service-mzdy.avif",
+    heroImg: "/sluzby/mzdove.webp",
     featuresH2: "Services – Payroll and Human Resources",
     features: [
       { lead: "Preparation", rest: "of new employment contracts and addenda" },
@@ -92,7 +92,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "As part of our collaboration, in addition to a comprehensive service covering company formation, accounting and payroll processing, and tax advisory, we also offer a range of other services.",
     ],
-    heroImg: "/images/service-ostatne.jpg",
+    heroImg: "/sluzby/ostatne.webp",
     featuresH2: "Additional services provided",
     features: [
       { lead: "Online accounting", rest: "24/7 access to your books. No costs for purchasing or maintaining accounting software. Issuing accounting documents, inventory management, custom report creation, receivables and payables monitoring." },

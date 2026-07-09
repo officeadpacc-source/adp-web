@@ -31,7 +31,7 @@ export const services: Record<string, ServiceContent> = {
       "Zabezpečujeme kompletné spracovanie účtovných dokladov, pravidelné výstupy pre manažérske rozhodovanie aj kontrolu súladu s daňovými predpismi.",
       "S nami máte istotu, že vaše financie stoja na pevných základoch.",
     ],
-    heroImg: "/images/service-podvojne.avif",
+    heroImg: "/sluzby/podvojne.jpg",
     featuresH2: "Služby podvojného účtovníctva",
     features: [
       { lead: "Vyhotovenie", rest: "výkazov, reportov podľa konkrétnych požiadaviek klienta" },
@@ -77,7 +77,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "Zabezpečíme pre Vás dokonalý prehľad o Vašich príjmoch a výdavkoch. Zverte svoje účtovné povinnosti nám a vy sa môžete venovať svojmu podnikaniu.",
     ],
-    heroImg: "/images/service-jednoduche.webp",
+    heroImg: "/sluzby/jednoducheuct.jpg",
     featuresH2: "Služby jednoduché účtovníctva",
     features: [
       { lead: "Vyhotovenie", rest: "výkazov, reportov podľa konkrétnych požiadaviek klienta" },
@@ -103,7 +103,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "Prenechajte nám zodpovednosť za Vaše kompletné mzdové účtovníctvo. Budeme za Vás sledovať zmeny v legislatíve, spracovávať mzdy, odosielať výplatné pásky, poskytneme podporu Vašim zamestnancom pri riešení otázok týkajúcich sa výplatných pások a to so splnením najvyšších štandardov pre ochranu osobných údajov.",
     ],
-    heroImg: "/images/service-mzdy.avif",
+    heroImg: "/sluzby/mzdove.webp",
     featuresH2: "Služby - mzdy a personalistika",
     features: [
       { lead: "Vyhotovenie", rest: "nových pracovných zmlúv a dodatkov" },
@@ -130,7 +130,7 @@ export const services: Record<string, ServiceContent> = {
     intro: [
       "V rámci spolupráce pre Vás poskytneme okrem kompletného servisu od založenia firmy, spracovania účtovníctva a miezd, daňového poradenstva aj ostatné služby.",
     ],
-    heroImg: "/images/service-ostatne.jpg",
+    heroImg: "/sluzby/ostatne.webp",
     featuresH2: "Ďalšie poskytované služby",
     features: [
       { lead: "Účtovníctvo online", rest: "Prístup do vášho účtovníctva 24/7. Bez nákladov na obstaranie a servis účtovného softwaru. Vystavovanie účtovných dokladov, vedenie skladového hospodárstva, tvorba vlastných reportov, kontrola pohľadávok a záväzkov." },
