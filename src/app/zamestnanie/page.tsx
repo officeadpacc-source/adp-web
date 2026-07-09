@@ -209,7 +209,7 @@ export default function Zamestnanie() {
           <div id="prihlaska" className="mt-14 rounded bg-navy p-10 text-white md:p-12 scroll-mt-24 text-center">
             <h2 className="font-heading text-h3 text-white">Máte záujem o túto pozíciu?</h2>
             <p className="mt-4 max-w-2xl mx-auto text-base text-white/80">
-              Svoje životopisy zasielajte v slovenskom jazyku na email <a href="mailto:raus@adpacc.sk" className="underline font-semibold hover:text-sand-dark">raus@adpacc.sk</a> alebo prejdite na našu ponuku na Profesia.sk.
+              Svoje životopisy zasielajte na email <a href="mailto:raus@adpacc.sk" className="underline font-semibold hover:text-sand-dark">raus@adpacc.sk</a> alebo prejdite na našu ponuku na Profesia.sk.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a
