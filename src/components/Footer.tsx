@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+import ClientsBand from "@/components/ClientsBand";
+import { kontakt } from "@/content/home";
 
 const FOOTER_NAV = [
   { label: "Služby", href: "/#sluzby" },
@@ -20,47 +22,47 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <>
-      {/* Kontakt section — the site-wide contact block above the footer */}
-      <section id="kontakt" className="bg-sand py-16 md:py-24">
-        <div className="wrap grid gap-12 lg:grid-cols-2">
+      {/* Kontakt — navy section, 120px (origin: bg #161F2E) */}
+      <section id="kontakt" className="section scroll-mt-20 bg-navy text-white">
+        <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <h2 className="text-h3 md:text-h2">Kontakt</h2>
-            <div className="mt-8 space-y-8">
+            <h2 className="text-h4 text-white md:text-h2">{kontakt.h2}</h2>
+            <div className="mt-10 space-y-8">
               <div>
-                <h5 className="text-h5">Zavolajte nám</h5>
-                <p className="mt-2 text-small text-muted">Pon–Pia od 8:00 do 16:30</p>
-                <p className="mt-3 flex flex-col gap-1 text-lead">
-                  <a href="tel:+421253637544" className="hover:underline">
-                    +421 2 53 63 75 44
-                  </a>
-                  <a href="tel:+421903227726" className="hover:underline">
-                    +421 903 22 77 26
-                  </a>
+                <h5 className="text-h5 text-white">{kontakt.visit.title}</h5>
+                <p className="mt-2 text-base text-white/80">{kontakt.visit.text}</p>
+              </div>
+              <div>
+                <h5 className="text-h5 text-white">{kontakt.call.title}</h5>
+                <p className="mt-2 text-small text-white/60">{kontakt.call.hours}</p>
+                <p className="mt-2 flex flex-col gap-1 text-lead">
+                  {kontakt.call.phones.map((p) => (
+                    <a key={p.href} href={p.href} className="text-white hover:underline">
+                      {p.label}
+                    </a>
+                  ))}
                 </p>
               </div>
               <div>
-                <h5 className="text-h5">Napíšte nám</h5>
-                <p className="mt-3 text-lead">
-                  <a href="mailto:office@adpacc.sk" className="hover:underline">
-                    office@adpacc.sk
+                <h5 className="text-h5 text-white">{kontakt.write.title}</h5>
+                <p className="mt-2 text-lead">
+                  <a href={`mailto:${kontakt.write.email}`} className="text-white hover:underline">
+                    {kontakt.write.email}
                   </a>
                 </p>
               </div>
-              <div>
-                <p className="text-base text-body">Hraničná 53, 821 05 Bratislava</p>
-              </div>
-              <Link href="/cenova-ponuka/" className="btn-outline">
-                Vyhotoviť cenovú ponuku
+              <Link href={kontakt.quote.href} className="btn-invert">
+                {kontakt.quote.label}
               </Link>
             </div>
           </div>
-          <div>
-            <ContactForm />
-          </div>
+          <ContactForm dark />
         </div>
       </section>
 
-      {/* Footer proper */}
+      <ClientsBand />
+
+      {/* Footer — slate #39404D */}
       <footer className="bg-slate text-white">
         <div className="wrap py-16 md:py-[72px]">
           <div className="flex flex-col items-start justify-between gap-10 border-b border-white/15 pb-10 md:flex-row md:items-center">
@@ -105,7 +107,10 @@ export default function Footer() {
               A.D.P. Accounting, s.r.o. · Hraničná 53, 821 05 Bratislava
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-2">
-              <Link href="/ochrana-osobnych-udajov/" className="text-small text-white/70 hover:text-white">
+              <Link
+                href="/ochrana-osobnych-udajov/"
+                className="text-small text-white/70 hover:text-white"
+              >
                 Ochrana osobných údajov
               </Link>
               <Link href="/cookies/" className="text-small text-white/70 hover:text-white">
@@ -118,11 +123,21 @@ export default function Footer() {
             <p className="text-[12px] leading-relaxed text-faint">
               © {new Date().getFullYear()} A.D.P. Accounting, s.r.o. Táto stránka je chránená
               reCAPTCHA a platia pre ňu{" "}
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" className="underline">
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener"
+                className="underline"
+              >
                 Zásady ochrany osobných údajov
               </a>{" "}
               a{" "}
-              <a href="https://policies.google.com/terms" target="_blank" rel="noopener" className="underline">
+              <a
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener"
+                className="underline"
+              >
                 Zmluvné podmienky
               </a>{" "}
               spoločnosti Google.

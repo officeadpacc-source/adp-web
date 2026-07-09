@@ -16,9 +16,9 @@
 }
 
 @layer components {
-  /* Primary pill button — matches the Elementor kit button styling */
+  /* Kit button: navy bg, Manrope 16/600 uppercase ls .5px, 10.5px 30px, r=4px */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-[30px] py-[10.5px] font-sans text-nav font-semibold uppercase transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded px-[30px] py-[10.5px] font-sans text-nav font-semibold uppercase transition-colors;
   }
   .btn-primary {
     @apply btn bg-navy text-white hover:bg-slate;
@@ -29,7 +29,19 @@
   .btn-light {
     @apply btn border border-navy bg-white text-navy hover:bg-sand;
   }
+  /* white-on-dark variant for navy sections */
+  .btn-invert {
+    @apply btn bg-white text-navy hover:bg-sand;
+  }
   .wrap {
-    @apply mx-auto w-full max-w-wrap px-5;
+    @apply mx-auto w-full max-w-wrap px-4 md:px-12;
+  }
+  /* origin section rhythm: 120px desktop / 64px mobile */
+  .section {
+    @apply py-16 md:py-[120px];
+  }
+  /* origin cards: 1px #E3E6EC border, 4px radius, 24px padding */
+  .card {
+    @apply rounded border border-line bg-white p-6;
   }
 }
