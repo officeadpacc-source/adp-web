@@ -44,4 +44,25 @@
   .card {
     @apply rounded border border-line bg-white p-6;
   }
+  /* every section heading carries a short gold rule underneath */
+  .rule {
+    @apply mt-5 block h-[3px] w-[120px] bg-sand-dark;
+  }
+  /* sand CTA (Vyhotoviť cenovú ponuku) */
+  .btn-sand {
+    @apply btn bg-sand-dark text-navy hover:bg-white;
+  }
+}
+
+/* origin logo marquee: continuous scroll, list duplicated in markup */
+@keyframes adp-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: adp-marquee 30s linear infinite;
 }

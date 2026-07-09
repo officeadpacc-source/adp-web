@@ -22,8 +22,8 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white">
-      <div className="wrap flex items-center justify-between gap-4 py-2">
+    <header className="sticky top-0 z-50 bg-sand">
+      <div className="wrap flex items-center justify-between gap-4 py-4">
         <Link href="/" aria-label="A.D.P. Accounting — domov" className="shrink-0">
           <Image
             src="/images/adpacc_logo_web.webp"
@@ -84,12 +84,17 @@ export default function Header() {
             className="btn-light"
           >
             Klientská zóna
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded bg-[#2E6BF6] text-[9px] font-bold lowercase text-white">
+              do
+            </span>
           </a>
           <Link
             href="/en/"
-            className="text-nav font-semibold uppercase text-navy hover:text-muted"
+            className="flex items-center gap-2 text-nav font-semibold uppercase text-navy hover:text-muted"
             aria-label="Switch to English"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/flag-en.svg" alt="" width={21} height={15} className="rounded-[2px]" />
             EN
           </Link>
         </div>

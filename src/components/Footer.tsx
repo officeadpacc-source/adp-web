@@ -22,41 +22,68 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <>
-      {/* Kontakt — navy section, 120px (origin: bg #161F2E) */}
-      <section id="kontakt" className="section scroll-mt-20 bg-navy text-white">
-        <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* Kontakt — navy section, 120px; info left, white form card right */}
+      <section id="kontakt" className="section scroll-mt-24 bg-navy text-white">
+        <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <h2 className="text-h4 text-white md:text-h2">{kontakt.h2}</h2>
-            <div className="mt-10 space-y-8">
+            <span className="rule" />
+            <div className="mt-10 space-y-9">
               <div>
                 <h5 className="text-h5 text-white">{kontakt.visit.title}</h5>
-                <p className="mt-2 text-base text-white/80">{kontakt.visit.text}</p>
-              </div>
-              <div>
-                <h5 className="text-h5 text-white">{kontakt.call.title}</h5>
-                <p className="mt-2 text-small text-white/60">{kontakt.call.hours}</p>
-                <p className="mt-2 flex flex-col gap-1 text-lead">
-                  {kontakt.call.phones.map((p) => (
-                    <a key={p.href} href={p.href} className="text-white hover:underline">
-                      {p.label}
-                    </a>
-                  ))}
+                <p className="mt-4 flex items-center gap-3 text-base">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/icon-pin.svg" alt="" className="h-5 w-5" />
+                  <a
+                    href="https://maps.app.goo.gl/N37XRM7JbkktLojs7"
+                    target="_blank"
+                    rel="noopener nofollow"
+                    className="text-white underline underline-offset-4 hover:no-underline"
+                  >
+                    {kontakt.visit.text}
+                  </a>
                 </p>
               </div>
               <div>
+                <h5 className="text-h5 text-white">{kontakt.call.title}</h5>
+                <p className="mt-3 text-base text-white/80">{kontakt.call.hours}</p>
+                <div className="mt-4 flex items-start gap-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/icon-phone.svg" alt="" className="mt-1 h-5 w-5" />
+                  <p className="flex flex-col gap-2 text-base">
+                    {kontakt.call.phones.map((p) => (
+                      <a
+                        key={p.href}
+                        href={p.href}
+                        className="text-white underline underline-offset-4 hover:no-underline"
+                      >
+                        {p.label}
+                      </a>
+                    ))}
+                  </p>
+                </div>
+              </div>
+              <div>
                 <h5 className="text-h5 text-white">{kontakt.write.title}</h5>
-                <p className="mt-2 text-lead">
-                  <a href={`mailto:${kontakt.write.email}`} className="text-white hover:underline">
+                <p className="mt-4 flex items-center gap-3 text-base">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/icon-mail.svg" alt="" className="h-5 w-5" />
+                  <a
+                    href={`mailto:${kontakt.write.email}`}
+                    className="text-white underline underline-offset-4 hover:no-underline"
+                  >
                     {kontakt.write.email}
                   </a>
                 </p>
               </div>
-              <Link href={kontakt.quote.href} className="btn-invert">
+              <Link href={kontakt.quote.href} className="btn-sand">
                 {kontakt.quote.label}
               </Link>
             </div>
           </div>
-          <ContactForm dark />
+          <div className="rounded bg-white p-6 md:p-10">
+            <ContactForm />
+          </div>
         </div>
       </section>
 
