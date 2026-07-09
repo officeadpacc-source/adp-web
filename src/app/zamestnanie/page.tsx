@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Zamestnanie | ADP Accounting - Účtovníctvo Bratislava",
@@ -31,8 +32,8 @@ const ROLES = [
 export default function Zamestnanie() {
   return (
     <main>
-      <section className="bg-sand py-20 md:py-28">
-        <div className="wrap">
+      <section className="bg-sand">
+        <div className="wrap py-14 md:py-20">
           <h1 className="text-h3 md:text-h1">Zamestnanie v A.D.P. Accounting</h1>
           <span className="rule" />
           <p className="mt-8 max-w-2xl text-lead text-body">
@@ -41,6 +42,14 @@ export default function Zamestnanie() {
             práca s číslami baví.
           </p>
         </div>
+        <Image
+          src="/sluzby/zamestnanie.jpg"
+          alt="Zamestnanie v A.D.P. Accounting"
+          width={2400}
+          height={1200}
+          priority
+          className="max-h-[520px] w-full object-cover"
+        />
       </section>
 
       <section className="section bg-white">
