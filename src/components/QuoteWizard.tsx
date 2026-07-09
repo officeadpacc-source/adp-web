@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * 3-step quote wizard — faithful rebuild of the origin's /cenova-ponuka form
@@ -53,8 +53,12 @@ const COUNT_GROUPS: { title: string; fields: [string, string][] }[] = [
 const label = "block text-small font-semibold text-white/85";
 const input =
   "mt-1.5 w-full rounded-lg border border-white/10 bg-[#1e2a3d] px-3.5 py-3 text-small text-white placeholder:text-[#8E9BAA] focus:border-sand-dark focus:outline-none";
-const radioWrap =
-  "flex cursor-pointer items-center gap-2 rounded-lg border border-white/10 px-4 py-3 text-small text-white/85 transition has-[:checked]:border-sand-dark has-[:checked]:bg-sand-dark/10";
+const checkableItemClass = (checked: boolean) =>
+  `flex cursor-pointer items-center justify-center rounded-full border px-5 py-2.5 text-[12px] font-bold uppercase transition ${
+    checked
+      ? "border-[#C0A88C] bg-[#C0A88C]/15 text-white"
+      : "border-white/15 bg-transparent text-white/60 hover:border-white/30"
+  }`;
 
 export default function QuoteWizard() {
   const [step, setStep] = useState(0);
@@ -62,6 +66,18 @@ export default function QuoteWizard() {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<Record<string, string>>({});
   const [counts, setCounts] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (siteKey) {
+      if (!document.querySelector('script[src*="recaptcha/api.js"]')) {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, []);
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setData((d) => ({ ...d, [k]: e.target.value }));
@@ -77,11 +93,33 @@ export default function QuoteWizard() {
   async function submit() {
     setBusy(true);
     setError(null);
+
+    const payload: Record<string, any> = { ...data, counts, adp_ms: Date.now() - loadedAt };
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    const w = window as any;
+    if (siteKey && w.grecaptcha) {
+      try {
+        await new Promise<void>((resolve, reject) => {
+          w.grecaptcha.ready(() => {
+            w.grecaptcha
+              .execute(siteKey, { action: "submit" })
+              .then((token: string) => {
+                payload.recaptcha_token = token;
+                resolve();
+              })
+              .catch(reject);
+          });
+        });
+      } catch (captchaErr) {
+        console.warn("reCAPTCHA execution failed, proceeding without token:", captchaErr);
+      }
+    }
+
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, counts, adp_ms: Date.now() - loadedAt }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) {
         const out = await res.json().catch(() => ({}));
@@ -121,22 +159,45 @@ export default function QuoteWizard() {
               Povedzte nám základné informácie o vašom podnikaní.
             </p>
           </div>
+
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label className={label}>Názov spoločnosti / meno SZČO *</label>
-              <input className={input} value={data.company || ""} onChange={set("company")} />
+              <input
+                className={input}
+                placeholder="napr. ABC Trade, s.r.o."
+                value={data.company || ""}
+                onChange={set("company")}
+              />
             </div>
             <div>
               <label className={label}>Kontaktná osoba</label>
-              <input className={input} value={data.person || ""} onChange={set("person")} />
+              <input
+                className={input}
+                placeholder="Meno a priezvisko"
+                value={data.person || ""}
+                onChange={set("person")}
+              />
             </div>
             <div>
               <label className={label}>Telefón</label>
-              <input className={input} type="tel" value={data.phone || ""} onChange={set("phone")} />
+              <input
+                className={input}
+                type="tel"
+                placeholder="+421 9xx xxx xxx"
+                value={data.phone || ""}
+                onChange={set("phone")}
+              />
             </div>
             <div>
               <label className={label}>E-mail *</label>
-              <input className={input} type="email" value={data.email || ""} onChange={set("email")} />
+              <input
+                className={input}
+                type="email"
+                placeholder="email@spolocnost.sk"
+                value={data.email || ""}
+                onChange={set("email")}
+              />
             </div>
           </div>
           <div>
@@ -145,6 +206,7 @@ export default function QuoteWizard() {
               className={input}
               rows={3}
               maxLength={300}
+              placeholder="Krátky popis (2-3 vety) — napr. Prevádzkujeme e-shop s elektronikou, predaj B2B aj B2C. Ročne spracujeme cca 500 objednávok..."
               value={data.business || ""}
               onChange={set("business")}
             />
@@ -154,16 +216,16 @@ export default function QuoteWizard() {
           </div>
           <div>
             <label className={label}>Ročný obrat</label>
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
+            <div className="mt-2 flex flex-wrap gap-3">
               {REVENUES.map((r) => (
-                <label key={r} className={radioWrap}>
+                <label key={r} className={checkableItemClass(data.revenue === r)}>
                   <input
                     type="radio"
                     name="revenue"
                     value={r}
                     checked={data.revenue === r}
                     onChange={set("revenue")}
-                    className="accent-[#C0A88C]"
+                    className="sr-only"
                   />
                   {r}
                 </label>
@@ -208,6 +270,7 @@ export default function QuoteWizard() {
                       className={input}
                       type="number"
                       min={0}
+                      placeholder="0"
                       value={counts[k] || ""}
                       onChange={setCount(k)}
                     />
@@ -240,20 +303,25 @@ export default function QuoteWizard() {
           </div>
           <div>
             <label className={label}>Využívate momentálne nejakú účtovnú aplikáciu alebo softvér?</label>
-            <input className={input} value={data.software || ""} onChange={set("software")} />
+            <input
+              className={input}
+              placeholder="napr. Pohoda, Money S3, OMEGA, žiadny…"
+              value={data.software || ""}
+              onChange={set("software")}
+            />
           </div>
           <div>
             <label className={label}>Máte záujem aj o mzdové a personálne služby?</label>
-            <div className="mt-2 grid gap-3 sm:grid-cols-3">
+            <div className="mt-2 flex flex-wrap gap-3">
               {PAYROLL.map((p) => (
-                <label key={p} className={radioWrap}>
+                <label key={p} className={checkableItemClass(data.payroll === p)}>
                   <input
                     type="radio"
                     name="payroll"
                     value={p}
                     checked={data.payroll === p}
                     onChange={set("payroll")}
-                    className="accent-[#C0A88C]"
+                    className="sr-only"
                   />
                   {p}
                 </label>
@@ -262,16 +330,16 @@ export default function QuoteWizard() {
           </div>
           <div>
             <label className={label}>Kedy by ste chceli začať spoluprácu?</label>
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
+            <div className="mt-2 flex flex-wrap gap-3">
               {START.map((s) => (
-                <label key={s} className={radioWrap}>
+                <label key={s} className={checkableItemClass(data.start === s)}>
                   <input
                     type="radio"
                     name="start"
                     value={s}
                     checked={data.start === s}
                     onChange={set("start")}
-                    className="accent-[#C0A88C]"
+                    className="sr-only"
                   />
                   {s}
                 </label>
@@ -280,7 +348,13 @@ export default function QuoteWizard() {
           </div>
           <div>
             <label className={label}>Poznámka / otázka (nepovinné)</label>
-            <textarea className={input} rows={3} value={data.note || ""} onChange={set("note")} />
+            <textarea
+              className={input}
+              rows={3}
+              placeholder="Napíšte nám čokoľvek, čo by nám pomohlo pripraviť lepšiu ponuku..."
+              value={data.note || ""}
+              onChange={set("note")}
+            />
           </div>
           {/* honeypot */}
           <input

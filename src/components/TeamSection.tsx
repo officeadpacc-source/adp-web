@@ -30,7 +30,11 @@ export default function TeamSection() {
         <div className="mt-14 text-center">
           <p className="text-base text-body">{team.cta.text}</p>
           <a href={team.cta.href} target="_blank" rel="noopener" className="btn-outline mt-5">
-            {team.cta.label}
+            <span className="btn-roll">
+              <span className="btn-roll-text" data-hover={team.cta.label}>
+                {team.cta.label}
+              </span>
+            </span>
           </a>
         </div>
       </div>

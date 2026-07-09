@@ -97,7 +97,11 @@ export default function ContactDrawer({
               </p>
             </div>
             <Link href={kontakt.quote.href} onClick={onClose} className="btn-sand">
-              {kontakt.quote.label}
+              <span className="btn-roll">
+                <span className="btn-roll-text" data-hover={kontakt.quote.label}>
+                  {kontakt.quote.label}
+                </span>
+              </span>
             </Link>
           </div>
 

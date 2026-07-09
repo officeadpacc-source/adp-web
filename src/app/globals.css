@@ -105,5 +105,31 @@
   }
 }
 .marquee {
-  animation: adp-marquee 80s linear infinite;
+  animation: adp-marquee 160s linear infinite;
 }
+
+/* premium button text rollover effect */
+.btn-roll {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+.btn-roll-text {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.btn-roll-text::after {
+  content: attr(data-hover);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.btn:hover .btn-roll-text,
+.group:hover .btn-roll-text {
+  transform: translateY(-100%);
+}
+

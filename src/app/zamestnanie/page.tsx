@@ -79,9 +79,13 @@ export default function Zamestnanie() {
             </p>
             <a
               href="mailto:office@adpacc.sk?subject=Zamestnanie%20-%20zivotopis"
-              className="btn-sand mt-8"
+              className="btn-sand mt-8 w-full sm:w-auto text-center"
             >
-              Poslať životopis na office@adpacc.sk
+              <span className="btn-roll">
+                <span className="btn-roll-text" data-hover="Poslať životopis na office@adpacc.sk">
+                  Poslať životopis na office@adpacc.sk
+                </span>
+              </span>
             </a>
             <p className="mt-5 text-[12px] text-white/50">
               Zaslaním životopisu udeľujete súhlas so spracovaním osobných údajov na účely

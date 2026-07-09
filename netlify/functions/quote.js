@@ -66,6 +66,31 @@ exports.handler = async (event) => {
   const fillMs = Number(d.adp_ms);
   if (!Number.isFinite(fillMs) || fillMs < MIN_FILL_MS) return FAKE_OK;
 
+  // reCAPTCHA verification (if secret key configured):
+  const { RECAPTCHA_SECRET_KEY } = process.env;
+  if (RECAPTCHA_SECRET_KEY) {
+    const token = d.recaptcha_token;
+    if (!token) {
+      console.warn("reCAPTCHA token missing:", ip);
+      return { statusCode: 400, body: JSON.stringify({ error: "Chýba overenie reCAPTCHA." }) };
+    }
+    try {
+      const verifyRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${encodeURIComponent(RECAPTCHA_SECRET_KEY)}&response=${encodeURIComponent(token)}`,
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success || verifyData.score < 0.5) {
+        console.warn("reCAPTCHA failed:", ip, verifyData);
+        return FAKE_OK; // Silent failure to prevent bots from learning
+      }
+    } catch (err) {
+      console.error("reCAPTCHA verify error:", err);
+      // Proceed on API error to avoid blocking legitimate users
+    }
+  }
+
   if (!(d.company || "").trim() || !EMAIL_RE.test((d.email || "").trim())) {
     return {
       statusCode: 400,

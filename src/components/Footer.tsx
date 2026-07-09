@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
@@ -20,72 +23,85 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const [isQuotePage, setIsQuotePage] = useState(false);
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    setIsQuotePage(path.startsWith("/cenova-ponuka"));
+  }, []);
+
   return (
     <>
       {/* Kontakt — navy section, 120px; info left, white form card right */}
-      <section id="kontakt" className="section scroll-mt-24 bg-navy text-white">
-        <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <h2 className="text-h4 text-white md:text-h2">{kontakt.h2}</h2>
-            <span className="rule" />
-            <div className="mt-10 space-y-9">
-              <div>
-                <h5 className="text-h5 text-white">{kontakt.visit.title}</h5>
-                <p className="mt-4 flex items-center gap-3 text-base">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/icon-pin.svg" alt="" className="h-5 w-5" />
-                  <a
-                    href="https://maps.app.goo.gl/N37XRM7JbkktLojs7"
-                    target="_blank"
-                    rel="noopener nofollow"
-                    className="text-white underline underline-offset-4 hover:no-underline"
-                  >
-                    {kontakt.visit.text}
-                  </a>
-                </p>
-              </div>
-              <div>
-                <h5 className="text-h5 text-white">{kontakt.call.title}</h5>
-                <p className="mt-3 text-base text-white/80">{kontakt.call.hours}</p>
-                <div className="mt-4 flex items-start gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/icon-phone.svg" alt="" className="mt-1 h-5 w-5" />
-                  <p className="flex flex-col gap-2 text-base">
-                    {kontakt.call.phones.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        className="text-white underline underline-offset-4 hover:no-underline"
-                      >
-                        {p.label}
-                      </a>
-                    ))}
+      {!isQuotePage && (
+        <section id="kontakt" className="section scroll-mt-24 bg-navy text-white">
+          <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <h2 className="text-h4 text-white md:text-h2">{kontakt.h2}</h2>
+              <span className="rule" />
+              <div className="mt-10 space-y-9">
+                <div>
+                  <h5 className="text-h5 text-white">{kontakt.visit.title}</h5>
+                  <p className="mt-4 flex items-center gap-3 text-base">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/icon-pin.svg" alt="" className="h-5 w-5" />
+                    <a
+                      href="https://maps.app.goo.gl/N37XRM7JbkktLojs7"
+                      target="_blank"
+                      rel="noopener nofollow"
+                      className="text-white underline underline-offset-4 hover:no-underline"
+                    >
+                      {kontakt.visit.text}
+                    </a>
                   </p>
                 </div>
+                <div>
+                  <h5 className="text-h5 text-white">{kontakt.call.title}</h5>
+                  <p className="mt-3 text-base text-white/80">{kontakt.call.hours}</p>
+                  <div className="mt-4 flex items-start gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/icon-phone.svg" alt="" className="mt-1 h-5 w-5" />
+                    <p className="flex flex-col gap-2 text-base">
+                      {kontakt.call.phones.map((p) => (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          className="text-white underline underline-offset-4 hover:no-underline"
+                        >
+                          {p.label}
+                        </a>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <h5 className="text-h5 text-white">{kontakt.write.title}</h5>
+                  <p className="mt-4 flex items-center gap-3 text-base">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/icon-mail.svg" alt="" className="h-5 w-5" />
+                    <a
+                      href={`mailto:${kontakt.write.email}`}
+                      className="text-white underline underline-offset-4 hover:no-underline"
+                    >
+                      {kontakt.write.email}
+                    </a>
+                  </p>
+                </div>
+                <Link href={kontakt.quote.href} className="btn-sand w-full sm:w-auto">
+                  <span className="btn-roll">
+                    <span className="btn-roll-text" data-hover={kontakt.quote.label}>
+                      {kontakt.quote.label}
+                    </span>
+                  </span>
+                </Link>
               </div>
-              <div>
-                <h5 className="text-h5 text-white">{kontakt.write.title}</h5>
-                <p className="mt-4 flex items-center gap-3 text-base">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/icon-mail.svg" alt="" className="h-5 w-5" />
-                  <a
-                    href={`mailto:${kontakt.write.email}`}
-                    className="text-white underline underline-offset-4 hover:no-underline"
-                  >
-                    {kontakt.write.email}
-                  </a>
-                </p>
-              </div>
-              <Link href={kontakt.quote.href} className="btn-sand">
-                {kontakt.quote.label}
-              </Link>
+            </div>
+            <div className="rounded bg-white p-6 md:p-10">
+              <ContactForm />
             </div>
           </div>
-          <div className="rounded bg-white p-6 md:p-10">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <ClientsBand />
 

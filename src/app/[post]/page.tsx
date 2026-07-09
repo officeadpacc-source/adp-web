@@ -67,8 +67,12 @@ export default async function Post({ params }: { params: Promise<Params> }) {
           )}
           <div className="post-body" dangerouslySetInnerHTML={{ __html: html }} />
           <div className="mt-14 border-t border-line pt-8">
-            <Link href="/blog/" className="btn-outline">
-              ← Späť na blog
+            <Link href="/blog/" className="btn-outline w-full sm:w-auto">
+              <span className="btn-roll">
+                <span className="btn-roll-text" data-hover="← Späť na blog">
+                  ← Späť na blog
+                </span>
+              </span>
             </Link>
           </div>
         </div>

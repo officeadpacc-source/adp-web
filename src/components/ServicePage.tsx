@@ -23,12 +23,20 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
                 {p}
               </p>
             ))}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/#kontakt" className="btn-primary">
-                Kontaktujte nás
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link href="/#kontakt" className="btn-primary w-full sm:w-auto">
+                <span className="btn-roll">
+                  <span className="btn-roll-text" data-hover="Kontaktujte nás">
+                    Kontaktujte nás
+                  </span>
+                </span>
               </Link>
-              <a href="#sluzby" className="btn-outline">
-                Zistiť viac
+              <a href="#sluzby" className="btn-outline w-full sm:w-auto">
+                <span className="btn-roll">
+                  <span className="btn-roll-text" data-hover="Zistiť viac">
+                    Zistiť viac
+                  </span>
+                </span>
               </a>
             </div>
           </div>
@@ -93,8 +101,12 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
                         <span className="text-small text-muted">/mesačne</span>
                       </p>
                     </div>
-                    <Link href="/#kontakt" className="btn-primary mt-8">
-                      Mám záujem
+                    <Link href="/#kontakt" className="btn-primary mt-8 w-full sm:w-auto">
+                      <span className="btn-roll">
+                        <span className="btn-roll-text" data-hover="Mám záujem">
+                          Mám záujem
+                        </span>
+                      </span>
                     </Link>
                   </div>
                 ))}
@@ -106,8 +118,12 @@ export default function ServicePage({ s, extra }: { s: ServiceContent; extra?: R
                   od <CountUp to={s.pricing.value} /> €
                 </p>
                 <p className="mt-2 text-small text-muted">{s.pricing.unit}</p>
-                <Link href="/#kontakt" className="btn-primary mt-8">
-                  Mám záujem
+                 <Link href="/#kontakt" className="btn-primary mt-8 w-full sm:w-auto">
+                  <span className="btn-roll">
+                    <span className="btn-roll-text" data-hover="Mám záujem">
+                      Mám záujem
+                    </span>
+                  </span>
                 </Link>
               </div>
             )}

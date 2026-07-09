@@ -80,7 +80,11 @@ export default function Header() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <button onClick={() => setContactOpen(true)} className="btn-primary">
-            Kontakt
+            <span className="btn-roll">
+              <span className="btn-roll-text" data-hover="Kontakt">
+                Kontakt
+              </span>
+            </span>
           </button>
           <a
             href="https://app.doklado.sk/signin_email"
@@ -88,10 +92,13 @@ export default function Header() {
             rel="noopener"
             className="btn-light"
           >
-            Klientská zóna
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded bg-[#2E6BF6] text-[9px] font-bold lowercase text-white">
-              do
+            <span className="btn-roll">
+              <span className="btn-roll-text" data-hover="Klientská zóna">
+                Klientská zóna
+              </span>
             </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/doklado.svg" alt="" className="h-5 w-5 shrink-0 rounded-[2px]" />
           </a>
           <Link
             href="/en/"
@@ -117,54 +124,105 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <nav className="border-t border-line bg-white px-5 pb-6 pt-2 lg:hidden" aria-label="Mobilné menu">
-          <p className="pt-3 text-navsm font-semibold uppercase text-faint">Služby</p>
-          {SERVICES.map((s) => (
-            <Link
-              key={s.href}
-              href={s.href}
-              onClick={() => setOpen(false)}
-              className="block py-2.5 pl-3 text-nav font-semibold uppercase text-navy"
-            >
-              {s.label}
-            </Link>
-          ))}
-          {NAV.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              onClick={() => setOpen(false)}
-              className="block py-2.5 text-nav font-semibold uppercase text-navy"
-            >
-              {n.label}
-            </Link>
-          ))}
-          <div className="mt-4 flex flex-col gap-3">
+      {/* Mobile backdrop */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Mobile slide-in sidebar */}
+      <nav
+        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-navy p-6 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden flex flex-col justify-between ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+        aria-label="Mobilné menu"
+      >
+        <div>
+          <div className="flex items-center justify-between pb-4 border-b border-white/10">
+            <span className="font-heading text-h5 text-white">Menu</span>
             <button
-              onClick={() => {
-                setOpen(false);
-                setContactOpen(true);
-              }}
-              className="btn-primary"
+              className="flex h-8 w-8 items-center justify-center text-white"
+              onClick={() => setOpen(false)}
+              aria-label="Zavrieť menu"
             >
-              Kontakt
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
-            <a
-              href="https://app.doklado.sk/signin_email"
-              target="_blank"
-              rel="noopener"
-              className="btn-light"
-            >
-              Klientská zóna
-            </a>
-            <Link href="/en/" className="py-2 text-nav font-semibold uppercase text-navy">
-              EN
-            </Link>
           </div>
-        </nav>
-      )}
+          <div className="py-6 space-y-6">
+            <div>
+              <p className="text-navsm font-bold uppercase tracking-wider text-sand-dark">Služby</p>
+              <div className="mt-2 space-y-1 pl-3 border-l border-white/10">
+                {SERVICES.map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-2 text-nav font-medium text-white/80 hover:text-white"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-1">
+              {NAV.map((n) => (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-nav font-semibold uppercase text-white hover:text-sand-dark"
+                >
+                  {n.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 pt-6 flex flex-col gap-3">
+          <button
+            onClick={() => {
+              setOpen(false);
+              setContactOpen(true);
+            }}
+            className="btn-sand w-full"
+          >
+            <span className="btn-roll">
+              <span className="btn-roll-text" data-hover="Kontakt">
+                Kontakt
+              </span>
+            </span>
+          </button>
+          <a
+            href="https://app.doklado.sk/signin_email"
+            target="_blank"
+            rel="noopener"
+            className="btn-invert w-full flex items-center justify-center gap-2"
+          >
+            <span className="btn-roll">
+              <span className="btn-roll-text" data-hover="Klientská zóna">
+                Klientská zóna
+              </span>
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/doklado.svg" alt="" className="h-5 w-5 shrink-0 rounded-[2px]" />
+          </a>
+          <Link
+            href="/en/"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 py-2 text-nav font-semibold uppercase text-white hover:text-sand-dark"
+            aria-label="Switch to English"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/flag-en.svg" alt="" width={21} height={15} className="rounded-[2px]" />
+            EN
+          </Link>
+        </div>
+      </nav>
       <ContactDrawer open={contactOpen} onClose={() => setContactOpen(false)} />
     </header>
   );

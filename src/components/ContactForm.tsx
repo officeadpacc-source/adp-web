@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Contact form — same Netlify function + SMTP2GO backend and spam defences
@@ -26,6 +26,18 @@ export default function ContactForm() {
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
+  useEffect(() => {
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (siteKey) {
+      if (!document.querySelector('script[src*="recaptcha/api.js"]')) {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, []);
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = formRef.current!;
@@ -35,6 +47,27 @@ export default function ContactForm() {
 
     setBusy(true);
     setError(null);
+
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    const w = window as any;
+    if (siteKey && w.grecaptcha) {
+      try {
+        await new Promise<void>((resolve, reject) => {
+          w.grecaptcha.ready(() => {
+            w.grecaptcha
+              .execute(siteKey, { action: "submit" })
+              .then((token: string) => {
+                data.recaptcha_token = token;
+                resolve();
+              })
+              .catch(reject);
+          });
+        });
+      } catch (captchaErr) {
+        console.warn("reCAPTCHA execution failed, proceeding without token:", captchaErr);
+      }
+    }
+
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
@@ -131,7 +164,14 @@ export default function ContactForm() {
         </span>
       </label>
       <button type="submit" disabled={busy} className="btn-primary w-full disabled:opacity-60">
-        {busy ? "Odosielam…" : "Odoslať správu"}
+        <span className="btn-roll">
+          <span
+            className="btn-roll-text"
+            data-hover={busy ? "Odosielam…" : "Odoslať správu"}
+          >
+            {busy ? "Odosielam…" : "Odoslať správu"}
+          </span>
+        </span>
       </button>
       {error && <p className="rounded bg-red-bg px-4 py-3 text-small text-red">{error}</p>}
     </form>

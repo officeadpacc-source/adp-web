@@ -31,12 +31,20 @@ export default function Home() {
           <h1 className="text-h3 md:text-h1">{hero.h1}</h1>
           <div className="self-center">
             <p className="text-lead text-body">{hero.lead}</p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href={hero.primary.href} className="btn-primary">
-                {hero.primary.label}
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link href={hero.primary.href} className="btn-primary w-full sm:w-auto">
+                <span className="btn-roll">
+                  <span className="btn-roll-text" data-hover={hero.primary.label}>
+                    {hero.primary.label}
+                  </span>
+                </span>
               </Link>
-              <Link href={hero.secondary.href} className="btn-outline">
-                {hero.secondary.label}
+              <Link href={hero.secondary.href} className="btn-outline w-full sm:w-auto">
+                <span className="btn-roll">
+                  <span className="btn-roll-text" data-hover={hero.secondary.label}>
+                    {hero.secondary.label}
+                  </span>
+                </span>
               </Link>
             </div>
           </div>
@@ -47,7 +55,7 @@ export default function Home() {
           width={2400}
           height={1350}
           priority
-          className="max-h-[640px] w-full object-cover object-top"
+          className="w-full h-auto"
         />
       </section>
 
@@ -70,14 +78,19 @@ export default function Home() {
           </div>
           <div className="mt-16 grid gap-6 md:grid-cols-2">
             {services.cards.map((c, i) => (
-              <div key={c.href} className="flex gap-6 rounded bg-paper p-8 md:p-10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={SERVICE_ICONS[i]} alt="" className="h-12 w-12 shrink-0 md:h-14 md:w-14" />
-                <div>
-                  <h3 className="font-heading text-h5 text-navy md:text-[30px] md:leading-[1.2]">
+              <div key={c.href} className="flex flex-col gap-5 rounded bg-paper p-8 md:flex-row md:gap-6 md:p-10">
+                <div className="flex items-center gap-4 md:block md:shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={SERVICE_ICONS[i]} alt="" className="h-12 w-12 md:h-14 md:w-14" />
+                  <h3 className="font-heading text-h5 text-navy md:hidden">
                     {c.title}
                   </h3>
-                  <p className="mt-3 text-base text-body">{c.text}</p>
+                </div>
+                <div>
+                  <h3 className="hidden font-heading text-h5 text-navy md:block md:text-[30px] md:leading-[1.2]">
+                    {c.title}
+                  </h3>
+                  <p className="mt-3 text-base text-body md:mt-3">{c.text}</p>
                   <Link
                     href={c.href}
                     className="mt-5 inline-block text-navsm font-semibold uppercase text-navy hover:underline"
@@ -207,7 +220,11 @@ export default function Home() {
           <span className="rule" />
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {hodnoty.cards.map((c) => (
-              <div key={c.title} className="rounded bg-white p-8">
+              <div key={c.title} className="rounded bg-white p-8 flex flex-col items-start">
+                {c.icon && (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={c.icon} alt="" className="h-12 w-12 mb-6" />
+                )}
                 <h3 className="font-heading text-h5 text-navy">{c.title}</h3>
                 {c.text && <p className="mt-3 text-base text-body">{c.text}</p>}
               </div>

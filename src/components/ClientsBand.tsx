@@ -3,7 +3,14 @@ import { clientsStrip } from "@/content/home";
 
 /** Navy client-logo marquee — after the hero photo and again above the footer. */
 export default function ClientsBand() {
-  const logos = [...clientsStrip.logos, ...clientsStrip.logos];
+  const logos = [
+    ...clientsStrip.logos,
+    ...clientsStrip.logos,
+    ...clientsStrip.logos,
+    ...clientsStrip.logos,
+    ...clientsStrip.logos,
+    ...clientsStrip.logos,
+  ];
   return (
     <section className="overflow-hidden bg-navy py-6">
       <p className="mb-4 text-center text-navsm font-semibold uppercase text-white/60">

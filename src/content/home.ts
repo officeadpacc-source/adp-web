@@ -185,14 +185,17 @@ export const hodnoty = {
   cards: [
     {
       title: "Slušnosť",
+      icon: "/images/icon-slusnost.svg",
       text: "K zákazníkom, obchodným partnerom aj k sebe navzájom pristupujeme slušne, s rešpektom a porozumením. Hrubosť, arogancia ani povýšenosť u nás nemajú miesto. Vážime si rozdielnosť názorov a podporujeme otvorenú, tolerantnú komunikáciu.",
     },
     {
       title: "Férovosť a spravodlivosť",
+      icon: "/images/icon-ferovost.svg",
       text: "Zákazníkom odporúčame riešenia, ktoré im prinášajú skutočnú hodnotu. Naše ceny sú férové, transparentné a bez skrytých poplatkov. Rovnako férovo pristupujeme aj k zamestnancom — odmeňujeme ich spravodlivo podľa výkonu, prínosu a zodpovednosti, nie podľa firemnej hierarchie.",
     },
     {
       title: "Rozvoj",
+      icon: "/images/icon-rozvoj.svg",
       text: "Máme ambíciu neustále sa zlepšovať a patriť medzi najlepších. Sledujeme technologické trendy, prinášame nové riešenia a vytvárame trvalú hodnotu pre zákazníkov. Svoju prácu robíme s nadšením, zodpovednosťou a chuťou posúvať veci vpred.",
     },
   ],

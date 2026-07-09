@@ -25,9 +25,13 @@ export default function OAdp() {
               účtovné služby pre živnostníkov, malé a stredné podniky. Zverte svoje účtovníctvo
               do rúk profesionálov a sústreďte sa na rast vášho podnikania.
             </p>
-            <div className="mt-8">
-              <a href="#kontakt" className="btn-primary">
-                Kontaktujte nás
+            <div className="mt-8 flex flex-col sm:flex-row">
+              <a href="#kontakt" className="btn-primary w-full sm:w-auto">
+                <span className="btn-roll">
+                  <span className="btn-roll-text" data-hover="Kontaktujte nás">
+                    Kontaktujte nás
+                  </span>
+                </span>
               </a>
             </div>
           </div>
@@ -38,7 +42,7 @@ export default function OAdp() {
           width={2400}
           height={1350}
           priority
-          className="max-h-[640px] w-full object-cover object-top"
+          className="w-full h-auto"
         />
       </section>
 
