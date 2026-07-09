@@ -16,6 +16,7 @@ const NAV = [
   { label: "O nás", href: "/o-adp/" },
   { label: "Referencie", href: "/#referencie" },
   { label: "Blog", href: "/blog/" },
+  { label: "Zamestnanie", href: "/zamestnanie/" },
 ];
 
 export default function Header() {

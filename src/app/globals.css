@@ -54,6 +54,47 @@
   }
 }
 
+/* blog article prose (extracted origin HTML) */
+.post-body {
+  @apply text-base text-body;
+}
+.post-body h2 {
+  @apply mb-4 mt-10 text-h5 md:text-h4;
+}
+.post-body h3 {
+  @apply mb-3 mt-8 font-heading text-h5 text-navy;
+}
+.post-body p {
+  @apply mb-4;
+}
+.post-body ul,
+.post-body ol {
+  @apply mb-4 ml-6 list-disc space-y-1;
+}
+.post-body ol {
+  @apply list-decimal;
+}
+.post-body a {
+  @apply text-navy underline underline-offset-2 hover:no-underline;
+}
+.post-body strong,
+.post-body b {
+  @apply text-ink;
+}
+.post-body img {
+  @apply my-6 h-auto max-w-full rounded;
+}
+.post-body table {
+  @apply my-6 w-full border-collapse text-small;
+}
+.post-body th,
+.post-body td {
+  @apply border border-line px-3 py-2 text-left;
+}
+.post-body blockquote {
+  @apply my-6 border-l-4 border-sand-dark bg-paper p-4;
+}
+
 /* origin logo marquee: continuous scroll, list duplicated in markup */
 @keyframes adp-marquee {
   from {

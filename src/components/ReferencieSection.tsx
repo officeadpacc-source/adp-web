@@ -1,0 +1,52 @@
+import Image from "next/image";
+import Carousel from "@/components/Carousel";
+import { referencie } from "@/content/home";
+
+const REF_LOGOS = Array.from({ length: 12 }, (_, i) => `/images/reflogo-${i + 1}.png`);
+
+/** Referencie — logo grid + quote carousel (homepage and O nás page). */
+export default function ReferencieSection() {
+  return (
+    <section id="referencie" className="section scroll-mt-24 bg-paper">
+      <div className="wrap">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="text-h4 md:text-h2">{referencie.h2}</h2>
+            <span className="rule" />
+            <p className="mt-8 text-base text-body">{referencie.intro}</p>
+          </div>
+          <div className="grid grid-cols-3 items-center gap-x-10 gap-y-8 sm:grid-cols-6">
+            {REF_LOGOS.map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt="Logo klienta"
+                width={130}
+                height={80}
+                className="mx-auto h-14 w-auto opacity-60 grayscale md:h-20"
+              />
+            ))}
+          </div>
+        </div>
+        <div className="mt-16">
+          <Carousel slideClass="basis-[85%] md:basis-[calc(33.333%-16px)]">
+            {referencie.quotes.map((q, i) => (
+              <figure key={q.slice(2, 26)} className="card flex h-full flex-col gap-6 p-6">
+                {i < 2 && (
+                  <Image
+                    src={`/images/cardlogo-${i + 1}.png`}
+                    alt=""
+                    width={200}
+                    height={95}
+                    className="mx-auto h-20 w-auto"
+                  />
+                )}
+                <blockquote className="text-base text-slate">{q}</blockquote>
+              </figure>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    </section>
+  );
+}

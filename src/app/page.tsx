@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import ClientsBand from "@/components/ClientsBand";
-import Carousel from "@/components/Carousel";
+import ReferencieSection from "@/components/ReferencieSection";
+import TeamSection from "@/components/TeamSection";
 import CountUp from "@/components/CountUp";
 import SpolupracaSection from "@/components/SpolupracaSection";
 import { STAT_ICONS } from "@/components/StatIcons";
@@ -10,9 +11,7 @@ import {
   services,
   whyUs,
   digital,
-  referencie,
   about,
-  team,
   hodnoty,
 } from "@/content/home";
 
@@ -22,8 +21,6 @@ const SERVICE_ICONS = [
   "/images/icon-jednoduche.svg",
   "/images/icon-ostatne.svg",
 ];
-
-const REF_LOGOS = Array.from({ length: 12 }, (_, i) => `/images/reflogo-${i + 1}.png`);
 
 export default function Home() {
   return (
@@ -166,48 +163,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · Referencie — paper; heading + logo grid, 3-per-view carousel */}
-      <section id="referencie" className="section scroll-mt-24 bg-paper">
-        <div className="wrap">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h2 className="text-h4 md:text-h2">{referencie.h2}</h2>
-              <span className="rule" />
-              <p className="mt-8 text-base text-body">{referencie.intro}</p>
-            </div>
-            <div className="grid grid-cols-3 items-center gap-x-10 gap-y-8 sm:grid-cols-6">
-              {REF_LOGOS.map((src) => (
-                <Image
-                  key={src}
-                  src={src}
-                  alt="Logo klienta"
-                  width={130}
-                  height={80}
-                  className="mx-auto h-14 w-auto opacity-60 grayscale md:h-20"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="mt-16">
-            <Carousel slideClass="basis-[85%] md:basis-[calc(33.333%-16px)]">
-              {referencie.quotes.map((q, i) => (
-                <figure key={q.slice(2, 26)} className="card flex h-full flex-col gap-6 p-6">
-                  {i < 2 && (
-                    <Image
-                      src={`/images/cardlogo-${i + 1}.png`}
-                      alt=""
-                      width={200}
-                      height={95}
-                      className="mx-auto h-20 w-auto"
-                    />
-                  )}
-                  <blockquote className="text-base text-slate">{q}</blockquote>
-                </figure>
-              ))}
-            </Carousel>
-          </div>
-        </div>
-      </section>
+      {/* 6 · Referencie — shared section */}
+      <ReferencieSection />
 
       {/* 7 · O nás — white, pt 120 pb 0 */}
       <section className="bg-white pt-16 md:pt-[120px]">
@@ -237,42 +194,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 · Náš tím — white, pt 120; 4-per-view carousel, borderless cards */}
-      <section className="bg-white pt-16 md:pt-[120px]">
-        <div className="wrap">
-          <h2 className="text-h4 md:text-h2">{team.h2}</h2>
-          <span className="rule" />
-          <div className="mt-12">
-            <Carousel slideClass="basis-[75%] sm:basis-[calc(50%-12px)] lg:basis-[calc(25%-18px)]">
-              {team.members.map((m) => (
-                <article key={m.name}>
-                  <Image
-                    src={m.photo}
-                    alt={m.name}
-                    width={600}
-                    height={700}
-                    className="aspect-[6/7] w-full object-cover"
-                  />
-                  <p className="mt-5 text-small text-sand-dark">{m.role}</p>
-                  <h3 className="mt-1 font-heading text-h5 text-navy">{m.name}</h3>
-                  <p className="mt-3 text-small text-muted">{m.bio}</p>
-                </article>
-              ))}
-            </Carousel>
-          </div>
-          <div className="mt-14 text-center">
-            <p className="text-base text-body">{team.cta.text}</p>
-            <a
-              href={team.cta.href}
-              target="_blank"
-              rel="noopener"
-              className="btn-outline mt-5"
-            >
-              {team.cta.label}
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* 8 · Náš tím — shared section */}
+      <TeamSection />
 
       {/* 9 · Ako prebieha spolupráca — shared section */}
       <SpolupracaSection />
