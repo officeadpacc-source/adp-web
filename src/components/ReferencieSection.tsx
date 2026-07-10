@@ -33,24 +33,21 @@ export default function ReferencieSection({ lang = "sk" }: { lang?: Lang }) {
           <Carousel slideClass="basis-[85%] md:basis-[calc(33.333%-16px)]">
             {referencie.quotes.map((q, i) => (
               <figure key={q.slice(2, 26)} className="card flex h-full flex-col gap-6 p-6">
-                {i === 2 && (
-                  <Image
-                    src="/images/cardlogo-1.png"
-                    alt="Galgan Music"
-                    width={200}
-                    height={95}
-                    className="mx-auto h-20 w-auto"
-                  />
-                )}
-                {i === 3 && (
-                  <Image
-                    src="/images/cardlogo-2.png"
-                    alt="Krajči Gano Architects"
-                    width={200}
-                    height={95}
-                    className="mx-auto h-20 w-auto"
-                  />
-                )}
+                <Image
+                  src={`/images/cardlogo-${i + 1}.png`}
+                  alt={
+                    i === 0
+                      ? "MJSPED"
+                      : i === 1
+                      ? "Blackeye"
+                      : i === 2
+                      ? "Galgan Music"
+                      : "Krajči Gano Architects"
+                  }
+                  width={200}
+                  height={95}
+                  className="mx-auto h-20 w-auto"
+                />
                 <blockquote className="text-base text-slate">{q}</blockquote>
               </figure>
             ))}
