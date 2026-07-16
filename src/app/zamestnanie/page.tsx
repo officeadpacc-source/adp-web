@@ -136,7 +136,7 @@ export default function Zamestnanie() {
             </div>
             <div className="rounded border border-line p-6 bg-sand-dark/5">
               <p className="text-small text-muted">Mzdové podmienky (brutto)</p>
-              <p className="mt-2 font-heading text-h4 text-navy">2 500 EUR / mesiac</p>
+              <p className="mt-2 font-heading text-h4 text-navy">od 2 200 EUR / mesiac</p>
               <p className="mt-1 text-[12px] text-faint">v závislosti od skúseností, 13. plat</p>
             </div>
           </div>
