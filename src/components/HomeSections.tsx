@@ -47,11 +47,13 @@ export default function HomeSections({ lang = "sk" }: { lang?: Lang }) {
           </div>
         </div>
         <Image
-          src="/images/hero.jpg"
-          alt="A.D.P. Accounting"
+          src="/images/hero-team.jpg"
+          alt="Tím A.D.P. Accounting"
           width={2400}
           height={1350}
           priority
+          quality={90}
+          sizes="100vw"
           className="h-auto w-full"
         />
       </section>
