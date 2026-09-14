@@ -120,7 +120,7 @@ export const team = {
       role: "Hlavná účtovníčka",
       // fotka zatiaľ nie je — tmavomodrý placeholder (#16202e), vymeniť keď príde portrét
       photo: "/images/team-placeholder-navy.png",
-      bio: "Simona Poťmáková je zodpovedná, pracovitá a cieľavedomá hlavná účtovníčka. Vždy má alebo vie mať jasne stanovené úlohy a priestor naplno sa im venovať. Kolegovia ju vnímajú ako energickú, spoľahlivú a prirodzenú líderku, ktorá dokáže tím nasmerovať a motivovať. Jej vytrvalosť a disciplína, ktoré uplatňuje aj v športe, sa premietajú do všetkého, čo robí, vďaka čomu je kľúčovou oporou nášho tímu.",
+      bio: "Simona Poťmáková je zodpovedná, pracovitá a cieľavedomá hlavná účtovníčka. Vždy má jasne stanovené úlohy a priestor naplno sa im venovať. Kolegovia ju vnímajú ako energickú, spoľahlivú a prirodzenú líderku, ktorá dokáže tím nasmerovať a motivovať. Jej vytrvalosť a disciplína, ktoré uplatňuje aj v športe, sa premietajú do všetkého, čo robí, vďaka čomu je kľúčovou oporou nášho tímu.",
     },
     {
       name: "Martina Šebová",

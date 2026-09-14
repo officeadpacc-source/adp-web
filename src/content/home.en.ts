@@ -110,7 +110,7 @@ const EN_BIOS: Record<string, string> = {
   "Peter Raus":
     "Peter Raus has been working in accounting for more than 25 years. Over the course of his career, he has become a reliable support for both clients and the entire team. He spends most of his working time in client meetings, focusing on individual solutions and professional advisory services.",
   "Simona Poťmáková":
-    "Simona Poťmáková is a responsible, hardworking and goal-oriented head accountant. She always has, or knows how to set, clearly defined tasks and the space to focus on them fully. Colleagues see her as an energetic, reliable and natural leader who can steer and motivate the team. The perseverance and discipline she brings to sport carry over into everything she does, making her a key pillar of our team.",
+    "Simona Poťmáková is a responsible, hardworking and goal-oriented head accountant. She always has clearly defined tasks and the space to focus on them fully. Colleagues see her as an energetic, reliable and natural leader who can steer and motivate the team. The perseverance and discipline she brings to sport carry over into everything she does, making her a key pillar of our team.",
   "Terezka Hradiská":
     "Terezka Hradiská is the newest addition to our team. She is a precise and ambitious accountant who takes her work seriously and is keen to keep moving forward. Although she is only at the start of her journey with us, she is fully engaged with accounting and builds her knowledge with an emphasis on accuracy and reliability. We are glad she is becoming part of our accounting team and look forward to seeing her grow with the company.",
   "Ingrid Pokopcová":
