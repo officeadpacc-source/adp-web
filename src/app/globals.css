@@ -95,6 +95,54 @@
   @apply my-6 border-l-4 border-sand-dark bg-paper p-4;
 }
 
+/* newsletter-style posts (Švarc systém, Rovnaké odmeňovanie): callout box,
+   two-column compare, stat tiles, scrollable table, footnote */
+.post-body .lead {
+  @apply mb-8 text-lead text-ink;
+}
+.post-body .box {
+  @apply my-6 rounded border-l-4 border-navy bg-sand p-5;
+}
+.post-body .box p:last-child {
+  @apply mb-0;
+}
+.post-body .box-t {
+  @apply mb-2 font-semibold uppercase tracking-wide text-navy text-small;
+}
+.post-body .dvojica {
+  @apply my-6 grid gap-4 md:grid-cols-2;
+}
+.post-body .dvojica > div {
+  @apply rounded border border-line bg-paper p-5;
+}
+.post-body .dvojica ul {
+  @apply mb-0;
+}
+.post-body .staty {
+  @apply my-6 grid gap-4 sm:grid-cols-3;
+}
+.post-body .stat {
+  @apply rounded bg-navy p-5 text-white;
+}
+.post-body .stat strong {
+  @apply block font-heading text-h4 leading-none text-sand;
+}
+.post-body .stat span {
+  @apply mt-2 block text-small opacity-80;
+}
+.post-body .tab-obal {
+  @apply my-6 overflow-x-auto;
+}
+.post-body .tab-obal table {
+  @apply my-0 min-w-[560px];
+}
+.post-body thead th {
+  @apply bg-sand font-semibold text-navy;
+}
+.post-body .pozn {
+  @apply mt-8 text-small text-muted;
+}
+
 /* origin logo marquee: continuous scroll, list duplicated in markup */
 @keyframes adp-marquee {
   from {

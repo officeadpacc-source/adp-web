@@ -95,7 +95,8 @@ export const about = {
 
 const EN_ROLES: Record<string, string> = {
   "Peter Raus": "Founder",
-  "Anna Privrelová": "Accountant",
+  "Simona Poťmáková": "Head Accountant",
+  "Terezka Hradiská": "Accountant",
   "Ingrid Pokopcová": "Office Manager",
   "Martina Šebová": "Accountant",
   "Tomáš Chlpek": "Accountant",
@@ -108,8 +109,10 @@ const EN_ROLES: Record<string, string> = {
 const EN_BIOS: Record<string, string> = {
   "Peter Raus":
     "Peter Raus has been working in accounting for more than 25 years. Over the course of his career, he has become a reliable support for both clients and the entire team. He spends most of his working time in client meetings, focusing on individual solutions and professional advisory services.",
-  "Anna Privrelová":
-    "Anna Privrelová is a responsible, hardworking, and goal-oriented accountant who performs best when she has clearly defined tasks and the space to fully focus on her work. Within the team, she is seen as an energetic and reliable colleague.",
+  "Simona Poťmáková":
+    "Simona Poťmáková is a responsible, hardworking and goal-oriented head accountant. She always has, or knows how to set, clearly defined tasks and the space to focus on them fully. Colleagues see her as an energetic, reliable and natural leader who can steer and motivate the team. The perseverance and discipline she brings to sport carry over into everything she does, making her a key pillar of our team.",
+  "Terezka Hradiská":
+    "Terezka Hradiská is the newest addition to our team. She is a precise and ambitious accountant who takes her work seriously and is keen to keep moving forward. Although she is only at the start of her journey with us, she is fully engaged with accounting and builds her knowledge with an emphasis on accuracy and reliability. We are glad she is becoming part of our accounting team and look forward to seeing her grow with the company.",
   "Ingrid Pokopcová":
     "Ingrid Pokopcová plays an important role in the day-to-day operation of the office. Thanks to her organizational skills, communication abilities, and positive attitude, she helps ensure smooth internal processes and effective communication with clients.",
   "Martina Šebová":

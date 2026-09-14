@@ -116,10 +116,11 @@ export const team = {
       bio: "Ingrid Pokopcová je dôležitou súčasťou každodenného fungovania kancelárie. Vďaka svojej organizovanosti, komunikačným schopnostiam a pozitívnemu prístupu zabezpečuje plynulý chod interných procesov aj komunikáciu s klientmi. Má výborný prehľad v dokumentácii, administratíve a zmluvnej agende. Dokáže efektívne vniesť systém aj do náročnejších úloh a prispieva k tomu, aby práca v kancelárii prebiehala spoľahlivo a profesionálne.",
     },
     {
-      name: "Anna Privrelová",
-      role: "Účtovníčka",
-      photo: "/images/team-2.webp",
-      bio: "Anna Privrelová je zodpovedná, pracovitá a cieľavedomá účtovníčka, ktorá sa najlepšie cíti vtedy, keď má jasne stanovené úlohy a priestor naplno sa venovať svojej práci. V tíme je vnímaná ako energická a spoľahlivá kolegyňa. Okrem práce sa venuje športu a rada prijíma nové výzvy. Jej vytrvalosť a disciplína sa premietajú aj do pracovného prístupu, vďaka čomu je dôležitou súčasťou nášho tímu.",
+      name: "Simona Poťmáková",
+      role: "Hlavná účtovníčka",
+      // fotka zatiaľ nie je — tmavomodrý placeholder (#16202e), vymeniť keď príde portrét
+      photo: "/images/team-placeholder-navy.png",
+      bio: "Simona Poťmáková je zodpovedná, pracovitá a cieľavedomá hlavná účtovníčka. Vždy má alebo vie mať jasne stanovené úlohy a priestor naplno sa im venovať. Kolegovia ju vnímajú ako energickú, spoľahlivú a prirodzenú líderku, ktorá dokáže tím nasmerovať a motivovať. Jej vytrvalosť a disciplína, ktoré uplatňuje aj v športe, sa premietajú do všetkého, čo robí, vďaka čomu je kľúčovou oporou nášho tímu.",
     },
     {
       name: "Martina Šebová",
@@ -156,6 +157,13 @@ export const team = {
       role: "Účtovníčka",
       photo: "/images/team-9.webp",
       bio: "Miroslava Kostecká je zodpovedná účtovníčka, ktorá sa venuje účtovnej agende, komunikácii s klientmi a organizácii práce. Počas pôsobenia v našom tíme si osvojila široké spektrum odborných aj praktických zručností. Svoj záujem o účtovníctvo neustále rozvíja a k práci pristupuje dôsledne, efektívne a s ochotou hľadať riešenia. Je spoľahlivou súčasťou tímu a prispieva k profesionálnemu servisu pre našich klientov.",
+    },
+    {
+      name: "Terezka Hradiská",
+      role: "Účtovníčka",
+      // fotka zatiaľ nie je — tmavomodrý placeholder (#16202e), vymeniť keď príde portrét
+      photo: "/images/team-placeholder-navy.png",
+      bio: "Terezka Hradiská je novou posilou nášho tímu. Terezka je precízna a ambiciózna účtovníčka, ktorá sa k práci stavia zodpovedne a s chuťou neustále sa posúvať vpred. Hoci je u nás len na začiatku svojej cesty, o účtovníctvo sa zaujíma naplno a svoje znalosti si buduje s dôrazom na presnosť a spoľahlivosť. Sme radi, že sa stáva súčasťou nášho účtovného tímu a tešíme sa, ako bude v našej firme rásť.",
     },
   ],
 };
