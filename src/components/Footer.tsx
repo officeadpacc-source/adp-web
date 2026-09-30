@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import ContactForm from "@/components/ContactForm";
 import ClientsBand from "@/components/ClientsBand";
 import { homeFor, uiFor, localizeHref, type Lang } from "@/lib/i18n";
+import { OPEN_CONSENT_EVENT } from "@/components/ConsentAndTracking";
 
 const SOCIALS = [
   { label: "Facebook", icon: "social-facebook-f", href: "https://www.facebook.com/profile.php?id=61576238373596" },
@@ -172,6 +173,13 @@ export default function Footer() {
               <Link href={t.footer.cookiesHref} className="text-small text-white/70 hover:text-white">
                 {t.footer.cookies}
               </Link>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+                className="text-small text-white/70 hover:text-white"
+              >
+                {lang === "en" ? "Cookie settings" : "Nastavenia cookies"}
+              </button>
             </div>
           </div>
 

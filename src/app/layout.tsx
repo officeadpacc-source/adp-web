@@ -6,8 +6,20 @@ import { Frank_Ruhl_Libre, Manrope, Roboto } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuoteFab from "@/components/QuoteFab";
+import ConsentAndTracking from "@/components/ConsentAndTracking";
 
 const GTM_ID = "GTM-PCPWTWB8";
+const ADS_ID = "AW-17158281759";
+
+// Consent Mode v2 default: everything denied until the visitor chooses in the
+// cookie banner (ConsentAndTracking). A stored choice is re-applied right away,
+// before GTM and gtag.js load. url_passthrough keeps ad-click IDs in the URL so
+// conversions can still be attributed without cookies.
+const CONSENT_DEFAULT = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);
+try{if(localStorage.getItem('adp_consent')==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}}catch(e){}
+gtag('js',new Date());gtag('config','${ADS_ID}');`;
 
 const frank = Frank_Ruhl_Libre({
   subsets: ["latin", "latin-ext"],
@@ -123,6 +135,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Script id="consent-default" strategy="beforeInteractive">
+          {CONSENT_DEFAULT}
+        </Script>
+        <Script
+          id="gtag-ads"
+          src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
+          strategy="afterInteractive"
+        />
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
@@ -138,6 +158,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Footer />
         <QuoteFab />
+        <ConsentAndTracking />
       </body>
     </html>
   );
